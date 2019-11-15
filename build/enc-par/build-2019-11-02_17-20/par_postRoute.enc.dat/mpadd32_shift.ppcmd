@@ -1,0 +1,80 @@
+# PPCMD 1 
+# sroute -connect corePin -nets {VDD VSS}
+# 4 
+# 16 
+# 0 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 1 
+
+# PPCMD 2 
+# addStripe -direction vertical -layer M9 -width 1.0 -spacing 10.0 -set_to_set_distance 22.0 -nets {VDD VSS
+# 3 
+# 2 
+# 1 
+# 0 
+# 0 
+# 2 
+# BOX_LIST 
+# 2200 1840 225000 223300 0 
+# 8200 7840 219000 217300 0 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# VSS 2000 9 0 36400 216800 44000 0 0 
+# VDD 2000 9 0 14400 216800 44000 0 0 
+# END_NET_INFO_LIST 
+# END_PPCMD 2 
+
+# PPCMD 3 
+# addStripe -direction horizontal -layer M10 -width 1.0 -spacing 10.0 -set_to_set_distance 22.0 -nets {VDD VSS
+# 2 
+# 2 
+# 1 
+# 0 
+# 0 
+# 2 
+# BOX_LIST 
+# 2200 5840 225000 227300 0 
+# 8200 11840 219000 221300 0 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# VSS 2000 10 0 35680 215460 44000 0 0 
+# VDD 2000 10 0 13680 215460 44000 0 0 
+# END_NET_INFO_LIST 
+# END_PPCMD 3 
+
+# PPCMD 4 
+# addRing -type core_rings -layer {top M10 bottom M10 left M9 right M9} -width 2.0 -spacing 1.0 -center 1 -nets {VDD VSS}
+# 1 
+# 32 
+# 1 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# VSS 4000 10 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 115600 3840 115600 225300 
+# END_RING_PT_INFO_LIST 
+# VSS 4000 9 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 4200 114570 227000 114570 
+# END_RING_PT_INFO_LIST 
+# VDD 4000 10 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 115600 9840 115600 219300 
+# END_RING_PT_INFO_LIST 
+# VDD 4000 9 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 10200 114570 221000 114570 
+# END_RING_PT_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 4 
+

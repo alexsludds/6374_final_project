@@ -1,0 +1,87 @@
+#######################################################
+#                                                     
+#  Innovus Command Logging File                     
+#  Created on Sat Nov  2 17:13:16 2019                
+#                                                     
+#######################################################
+
+#@(#)CDS: Innovus v19.10-p002_1 (64bit) 04/19/2019 15:18 (Linux 2.6.32-431.11.2.el6.x86_64)
+#@(#)CDS: NanoRoute 19.10-p002_1 NR190418-1643/19_10-UB (database version 18.20, 458.7.1) {superthreading v1.51}
+#@(#)CDS: AAE 19.10-b002 (64bit) 04/19/2019 (Linux 2.6.32-431.11.2.el6.x86_64)
+#@(#)CDS: CTE 19.10-p002_1 () Apr 19 2019 06:39:48 ( )
+#@(#)CDS: SYNTECH 19.10-b001_1 () Apr  4 2019 03:00:51 ( )
+#@(#)CDS: CPE v19.10-p002
+#@(#)CDS: IQuantus/TQuantus 19.1.0-e101 (64bit) Thu Feb 28 10:29:46 PST 2019 (Linux 2.6.32-431.11.2.el6.x86_64)
+
+set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+suppressMessage ENCEXT-2799
+getVersion
+read_activity_file -format VCD -scope mpadd_tb/u_DUT mpadd.vcd
+setCheckMode -netlist true -library true
+setImportMode -treatUndefinedCellAsBbox 0 -keepEmptyModule 1
+set init_import_mode {-treatUndefinedCellAsBbox 0 -keepEmptyModule 1}
+set init_top_cell mpadd32
+set init_verilog { ../../../build/rc-synth/current/synthesized.v }
+set init_design_netlisttype Verilog
+set init_design_settop 1
+set init_lef_file { /mit/cadence/GPDK045/gsclib045_all_v4.4/gsclib045/lef/gsclib045_tech.lef /mit/cadence/GPDK045/gsclib045_all_v4.4/gsclib045/lef/gsclib045_macro.lef /mit/cadence/GPDK045/gsclib045_all_v4.4/gsclib045/lef/gsclib045_multibitsDFF.lef }
+set init_gnd_net VSS
+set init_pwr_net VDD
+set init_mmmc_file par_mmmc.tcl
+set init_design_uniquify 1
+init_design
+setDesignMode -process 45 -addPhysicalCell hier
+setDrawView fplan
+floorPlan -r 1 0.7 7.2 6.84 7.2 6.84
+addRing -type core_rings -layer {top M10 bottom M10 left M9 right M9} -width 2.0 -spacing 1.0 -center 1 -nets {VDD VSS}
+createPGPin VSS! -net VSS -geom M9 1.1 8 3.1 10
+createPGPin VDD! -net VDD -geom M9 4.1 8 6.1 10
+addStripe -direction horizontal -layer M10 -width 1.0 -spacing 10.0 -set_to_set_distance 22.0 -nets {VDD VSS}
+addStripe -direction vertical -layer M9 -width 1.0 -spacing 10.0 -set_to_set_distance 22.0 -nets {VDD VSS}
+sroute -connect corePin -nets {VDD VSS}
+globalNetConnect VSS -type pgpin -inst * -pin VSS -module {}
+globalNetConnect VDD -type pgpin -inst * -pin VDD -module {}
+globalNetConnect VDD -type tiehi -inst * -module {}
+globalNetConnect VSS -type tielo -inst * -module {}
+setDrawView place
+setPlaceMode -place_global_place_io_pins true
+place_opt_design
+checkPlace
+setTieHiLoMode -cell {TIEHI TIELO} -maxFanout 20
+addTieHiLo -prefix TIE
+set_ccopt_property buffer_cells { CLKBUFX* }
+set_ccopt_property inverter_cells { CLKINVX* }
+set_ccopt_property target_max_trans 100ps
+set_ccopt_property target_skew 50ps
+create_ccopt_clock_tree_spec
+ccopt_design
+report_ccopt_clock_trees -file clock_trees.rpt
+report_ccopt_skew_groups -file skew_groups.rpt
+optDesign -postCTS -hold
+routeDesign
+setExtractRCMode -engine postRoute -effortLevel medium
+setDelayCalMode -SIAware false
+timeDesign -postRoute -outDir postRouteTiming
+timeDesign -postRoute -hold -outDir postRouteTiming
+saveDesign par_postRoute.enc
+optDesign -postRoute -setup -hold
+setFillerMode -add_fillers_with_drc false
+addFiller -fitGap -cell { FILL2 FILL4 FILL8 FILL16 FILL32 FILL64 } -prefix FILL
+addFiller -fitGap -cell { FILL1 } -prefix FILL
+ecoRoute
+verify_drc -limit 100000
+timeDesign -signoff -reportOnly -outDir signOffTiming
+timeDesign -signoff -hold -reportOnly -outDir signOffTiming
+saveDesign par_final.enc
+streamOut par.gds -mapFile gds.map -mode ALL -unit 1000
+saveNetlist par.v -excludeLeafCell -includePhysicalCell { DECAP2 DECAP3 DECAP4 DECAP5 DECAP6 DECAP7 DECAP8 DECAP9 DECAP10 TIEHI TIELO }
+write_sdf par.sdf
+report_power -outfile postroute_power.rpt
+setAnalysisMode -checkType setup
+buildTimingGraph
+report_timing -net -max_paths 200 > postroute_setup_timing.rpt
+setAnalysisMode -checkType hold
+buildTimingGraph
+report_timing -net -max_paths 200 > postroute_hold_timing.rpt
+reportGateCount -level 5 -limit 100 -stdCellOnly -outfile postroute_area.rpt
+reportWire postroute_wire.rpt

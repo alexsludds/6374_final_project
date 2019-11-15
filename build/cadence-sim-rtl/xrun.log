@@ -1,0 +1,53 @@
+xrun: 19.03-s013: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+TOOL:	xrun	19.03-s013: Started on Nov 15, 2019 at 13:41:40 EST
+xrun
+	../../src/mpadd.v
+	../../src/mpadd_tb.v
+	+access+r
+file: ../../src/mpadd.v
+	module worklib.mpadd32_shift:v
+		errors: 0, warnings: 0
+file: ../../src/mpadd_tb.v
+	module worklib.lfsr_256:v
+		errors: 0, warnings: 0
+	module worklib.mpadd_tb:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		mpadd_tb
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.mpadd32_shift:v <0x047f46cc>
+			streams:  12, words: 26684
+		worklib.lfsr_256:v <0x4ab0758c>
+			streams:   2, words:  1780
+		worklib.mpadd_tb:v <0x220e284d>
+			streams:  16, words: 10603
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                  Instances  Unique
+		Modules:                  4       3
+		Registers:               41      40
+		Scalar wires:            11       -
+		Vectored wires:           6       -
+		Named events:             1       1
+		Always blocks:            5       4
+		Initial blocks:           3       3
+		Cont. assignments:        2       2
+		Pseudo assignments:       3       3
+		Simulation timescale:  10ps
+	Writing initial simulation snapshot: worklib.mpadd_tb:v
+Loading snapshot worklib.mpadd_tb:v .................... Done
+xcelium> source /mit/cadence/XCELIUM/1903/tools/xcelium/files/xmsimrc
+xcelium> run
+START OF SIMULATION (Time: 150 ns)
+END OF SIMULATION (Time: 1.10025e+06 ns)
+TEST RESULT: PASS (1000 / 1000)
+##################
+
+Simulation complete via $finish(1) at time 1100251 NS + 0
+/afs/athena.mit.edu/user/a/s/asludds/6374/6374_final_project/src/mpadd_tb.v:109         	#1  $finish;
+xcelium> exit
+TOOL:	xrun	19.03-s013: Exiting on Nov 15, 2019 at 13:43:09 EST  (total: 00:01:29)
