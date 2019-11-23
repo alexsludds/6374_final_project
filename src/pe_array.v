@@ -1,67 +1,108 @@
 `timescale 1ns/10ps
+`include "pe_message_passer.v"
+`include "array_packing.v"
 
-module processing_element 
-    # (parameter PRECISION = 8,
-       parameter NUM_IMAGES = 2,
-       parameter OUTPUT_PRECISION = 32)
-    (CLK, reset, s_out, start_multiply, ready, isu, osu, isl, osl, isd, osd, isr, osr, shift_left, shift_right, shift_up, shift_down, image_shifting,error);
-    //CLK here is the CLK
-    //reset is a chip wide reset. All registers should dump their data
-    //s_out is the output product of the array
-    //isu is input shift up. This input is where data that will be shifted from below comes from.
-    //osu is output shift up. This is where data that we want to shift up goes. 
-    //The ready signal is raised after either a multiply or a shift. It is set to zero when a new operation is raised (shift_left, shift_right, shift_up,shift_down, start_multiply rise)
-    //shift_x means that we will shift data in the x direction.
-    //image_shifting is the number of the image we are shifting. 
-    //error is pulled high if there is ever an error
+module pe_array 
+    # (
+        parameter ARRAY_SIZE_1D = 1,
+        parameter long_shift_amount = 4,
+        parameter PRECISION = 8,
+        parameter OUTPUT_PRECISION = 32)
+    (
+        CLK,
+        ready,
+        array_ack,
+        // A_array,
+        // B_array,
+        // s_out_array,
+        // a_overwrite,
+        // b_overwrite,
+        // s_out_overwrite,
+        shift_direction,
+        image_to_shift,
+        command_to_execute);
 
-	input CLK, reset;
-	input [PRECISION-1:0] a_in, b_in;
-	input start_multiply;
-	output reg [OUTPUT_PRECISION-1:0] s_out;
-	output reg ready;
+    input CLK;
+    output reg ready;
+    // output reg 
+    
+    // input [OUTPUT_PRECISION*ARRAY_SIZE_1D*ARRAY_SIZE_1D-1:0] s_out_overwrite;
+    // wire [OUTPUT_PRECISION-1:0] unpacked_s_out_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    // `UNPACK_ARRAY_3D(ARRAY_SIZE_1D,ARRAY_SIZE_1D,OUTPUT_PRECISION,unpacked_s_out_overwrite,s_out_overwrite)
+    // input [PRECISION-1:0] a_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    // input [PRECISION-1:0] b_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0]; 
+    wire [PRECISION-1:0] A_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    wire [PRECISION-1:0] B_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    wire [OUTPUT_PRECISION-1:0] s_out_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    //This module is going to combine together all of the subparts that have been created (message passer, pe, etc)
+    wire  ready_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    input image_to_shift;
+    input [1:0] shift_direction;
+    input [2:0] command_to_execute;
+    input array_ack;
 
-    reg [NUM_IMAGES*PRECISION-1:0] image_storage;
-    reg [4:0] image_multiply_counter = 0; //Note, if we ever process more than 16 images in the test bench we will need to change this
-    reg [PRECISION-1:0] temporary_shifting_reg;
+    wire [PRECISION-1:0] osu_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    wire [PRECISION-1:0] osd_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    wire [PRECISION-1:0] osl_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+    wire [PRECISION-1:0] osr_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
 
-	always @(posedge CLK) begin
-		if (~reset) begin
-			ready <= 1'b0;
-		end
-		else begin
-            //Here we are going to check if we have to do message passing on this cycle
-            always @(posedge shift_up) begin
-                //Take the image at image_shifting and move it to the output. We have to be careful about blocking... move the input into a temp register and then shift 
-                temporary_shifting_reg <= isu;
-                osu <= image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION];
-                image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION] <= temporary_shifting_reg;
-            end
-            always @(posedge shift_down) begin
-                temporary_shifting_reg <= isd;
-                osd <= image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION];
-                image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION] <= temporary_shifting_reg;
-            end
-            always @(posedge shift_left) begin 
-                temporary_shifting_reg <= isl;
-                osl <= image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION];
-                image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION] <= temporary_shifting_reg;
-            end 
-            always @(posedge shift_right) begin
-                temporary_shifting_reg <= isr;
-                osr <= image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION];
-                image_storage[image_shifting*PRECISION + PRECISION - 1 : image_shifting*PRECISION] <= temporary_shifting_reg;
-            end
-            //Here we are going to check if we have to do an multiplication
-            always @(posedge start_multiply) begin
-                //Here we are being told to step through all images that we have and pairwise multiply them, adding them to the output register
-                //Right now this is just configured for two images, will expand this later by adding something like a state machine
-                s_out = s_out + {(OUTPUT_PRECISION-2*PRECISION){1'b0}, image_storage[2*PRECISION-1:PRECISION]*image_storage[PRECISION-1:0]};
-                //Right now because we only are doing two images we just raise the ready signal immediately.
-                ready = 1'b1;
-            end
-		end
-	end
+
+
+    //Here we are going to create an array of message passers and wire them
+    message_passer #(.PRECISION(PRECISION),.OUTPUT_PRECISION(OUTPUT_PRECISION)) mp (
+        .CLK(CLK),
+        .ready(ready_array[0][0]),
+        .ack(array_ack),
+        .A(A_array[0][0]),
+        .B(B_array[0][0]),
+        .s_out(s_out_array[0][0]),
+        .isu(osu_array[0][0]),
+        .osu(osu_array[0][0]),
+        .isl(osl_array[0][0]),
+        .osl(osl_array[0][0]),
+        .isd(osd_array[0][0]),
+        .osd(osd_array[0][0]),
+        .isr(osr_array[0][0]),
+        .osr(osr_array[0][0]),
+        .image_to_shift(image_to_shift),
+        .a_overwrite(a_overwrite[0][0]),
+        .b_overwrite(b_overwrite[0][0]),
+        .s_out_overwrite(s_out_overwrite[0][0]),
+        .shift_direction(shift_direction),
+        .command_to_execute(command_to_execute));
+
+
+    // genvar x;
+    // genvar y;
+    // generate
+    // for (x=0; x < ARRAY_SIZE_1D; x=x+1)
+    // for (y=0; y < ARRAY_SIZE_1D; y=y+1)
+    // begin: gen_code_label
+    //     message_passer #(.PRECISION(PRECISION),.OUTPUT_PRECISION(OUTPUT_PRECISION)) mp (
+    //     .CLK(CLK),
+    //     .ready(),
+    //     .ack(),
+    //     .A(),
+    //     .B(),
+    //     .s_out(),
+    //     .isu(),
+    //     .osu(),
+    //     .isl(),
+    //     .osl(),
+    //     isd,
+    //     osd,
+    //     isr,
+    //     osr,
+    //     image_to_shift,
+    //     a_overwrite,
+    //     b_overwrite,
+    //     s_out_overwrite,
+    //     shift_direction,
+    //     command_to_execute);
+    // end
+    // endgenerate
+
+	
 
 endmodule
 

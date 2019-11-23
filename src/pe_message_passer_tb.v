@@ -5,7 +5,7 @@ module processing_element_tb ();
 	parameter NUM_TEST = 10; // Number of tests
 
 	reg sys_clk;
-	input ready;
+	wire ready;
 	reg start;
 	reg [9:0] test_err;
 	reg [9:0] test_count;
@@ -36,7 +36,6 @@ module processing_element_tb ();
 	message_passer #(.PRECISION(8),.OUTPUT_PRECISION(32)) u_DUT  (
         .CLK(sys_clk),
 		.ready(ready),
-		.start(start),
 		.ack(ack),
 		.A(A),
 		.B(B),

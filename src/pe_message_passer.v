@@ -1,4 +1,5 @@
 `timescale 1ns/10ps
+`include "pe.v"
 
 module message_passer 
     # (parameter PRECISION = 8,
@@ -6,7 +7,6 @@ module message_passer
     (
         CLK,
         ready,
-        start,
         ack,
         A,
         B,
