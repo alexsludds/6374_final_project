@@ -44,7 +44,6 @@ module message_passer
 
 	input CLK;
     output reg ready = 0;
-    input start;
     input ack;
     input [1:0] shift_direction;
     input [2:0] command_to_execute;
@@ -157,4 +156,3 @@ module message_passer
         end 
     end 
 endmodule
-

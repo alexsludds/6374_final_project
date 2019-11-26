@@ -9,7 +9,7 @@ module processing_element_tb ();
 	reg start;
 	reg [9:0] test_err;
 	reg [9:0] test_count;
-    
+
 	wire [31:0] s_out;
 	reg [7:0] a_overwrite = 0;
 	reg [7:0] b_overwrite = 0;
@@ -29,12 +29,12 @@ module processing_element_tb ();
         .CLK(sys_clk),
 		.ready(ready),
 		.array_ack(array_ack),
-		.A_array(A_array),
-        .B_array(B_array),
-        .s_out_array(s_out_array),
-        .a_overwrite(a_overwrite),
-        .b_overwrite(b_overwrite),
-        .s_out_overwrite(s_out_overwrite),
+		// .A_array(A_array),
+        // .B_array(B_array),
+        // .s_out_array(s_out_array),
+        // .a_overwrite(a_overwrite),
+        // .b_overwrite(b_overwrite),
+        // .s_out_overwrite(s_out_overwrite),
         .shift_direction(shift_direction),
 		.image_to_shift(image_to_shift),
         .command_to_execute(command_to_execute)
