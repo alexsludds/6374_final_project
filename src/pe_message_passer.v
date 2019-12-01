@@ -23,7 +23,6 @@ module message_passer
         a_overwrite,
         b_overwrite,
         s_out_overwrite,
-        shift_direction,
         command_to_execute);
     //CLK here is the CLK
     //reset is a chip wide reset. All registers should dump their data
@@ -31,7 +30,6 @@ module message_passer
     //isu is input shift up. This input is where data that will be shifted from below comes from.
     //osu is output shift up. This is where data that we want to shift up goes. 
     //The ready signal is raised after either a multiply or a shift. It is set to zero when a new operation is raised (shift_left, shift_right, shift_up,shift_down, start_multiply rise)
-    //shift_direction is a 2 bit signal with the directions being: 00-up, 01-down, 10-left, 11-right
     //command_to_execute determines what we are going to do on this clock cycle. Here are the commands:
     //000 - multiply
     //001 - shift_up
@@ -45,7 +43,6 @@ module message_passer
 	input CLK;
     output reg ready = 0;
     input ack;
-    input [1:0] shift_direction;
     input [2:0] command_to_execute;
 
     output reg [PRECISION-1:0] A = 0;

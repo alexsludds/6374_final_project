@@ -1,0 +1,77 @@
+{C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_message_passer_tb.v} {1 {vlog -work work -sv -stats=none {C:\Users\timeloop\Dropbox (MIT)\Fall 2019\6.374\6374_final_project\src\pe_message_passer_tb.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module processing_element_tb
+
+Top level modules:
+	processing_element_tb
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_array.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_array.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module processing_element
+-- Compiling module message_passer
+-- Compiling module pe_array
+
+Top level modules:
+	pe_array
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/mpadd_tb.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/mpadd_tb.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module lfsr_256
+-- Compiling module mpadd_tb
+
+Top level modules:
+	mpadd_tb
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/array_packing.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/array_packing.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/side_reg_tb.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/side_reg_tb.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module processing_element_tb
+
+Top level modules:
+	processing_element_tb
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_array_tb.v} {0 {vlog -work work -sv -stats=none {C:\Users\timeloop\Dropbox (MIT)\Fall 2019\6.374\6374_final_project\src\pe_array_tb.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module pe_array_tb
+** Error: (vlog-13069) C:\Users\timeloop\Dropbox (MIT)\Fall 2019\6.374\6374_final_project\src\pe_array_tb.v(20): near "foreach": syntax error, unexpected foreach.
+
+
+} {4.0 5.0} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module processing_element
+
+Top level modules:
+	processing_element
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_message_passer.v} {1 {vlog -work work -sv -stats=none {C:\Users\timeloop\Dropbox (MIT)\Fall 2019\6.374\6374_final_project\src\pe_message_passer.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module processing_element
+-- Compiling module message_passer
+
+Top level modules:
+	message_passer
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/side_reg.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/side_reg.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module side_reg
+
+Top level modules:
+	side_reg
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_tb.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_tb.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module pe_tb
+
+Top level modules:
+	pe_tb
+
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/mpadd.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/mpadd.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module mpadd32_shift
+
+Top level modules:
+	mpadd32_shift
+
+} {} {}}

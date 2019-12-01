@@ -107,7 +107,7 @@ module pe_array
          .image_to_shift(image_to_shift),
          .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
          .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
-         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+         .s_out_overwrite(0),
          .shift_direction(shift_direction),
          .command_to_execute(command_to_execute));
     end

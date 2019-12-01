@@ -22,7 +22,6 @@ module processing_element_tb ();
 	reg [7:0] a_overwrite = 0;
 	reg [7:0] b_overwrite = 0;
 	reg [31:0] s_out_overwrite = 0;
-	reg [1:0] shift_direction = 0;
 	reg [2:0] command_to_execute = 0;
 	reg image_to_shift;
 	wire [7:0] A;
@@ -51,7 +50,6 @@ module processing_element_tb ();
         .a_overwrite(a_overwrite),
         .b_overwrite(b_overwrite),
         .s_out_overwrite(s_out_overwrite),
-        .shift_direction(shift_direction),
 		.image_to_shift(image_to_shift),
         .command_to_execute(command_to_execute)
 		);
