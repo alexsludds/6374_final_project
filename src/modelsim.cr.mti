@@ -32,20 +32,20 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	processing_element_tb
 
-} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_array_tb.v} {0 {vlog -work work -sv -stats=none {C:\Users\timeloop\Dropbox (MIT)\Fall 2019\6.374\6374_final_project\src\pe_array_tb.v}
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_array_tb.v} {0 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_array_tb.v}
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module pe_array_tb
-** Error: (vlog-13069) C:\Users\timeloop\Dropbox (MIT)\Fall 2019\6.374\6374_final_project\src\pe_array_tb.v(20): near "foreach": syntax error, unexpected foreach.
+** Error (suppressible): (vlog-10008) C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_array_tb.v(79): Too many indices (2) for array type A_array (dimensionality 0).
 
 
-} {4.0 5.0} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe.v}
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe.v}
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module processing_element
 
 Top level modules:
 	processing_element
 
-} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_message_passer.v} {1 {vlog -work work -sv -stats=none {C:\Users\timeloop\Dropbox (MIT)\Fall 2019\6.374\6374_final_project\src\pe_message_passer.v}
+} {} {}} {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_message_passer.v} {1 {vlog -work work -sv -stats=none {C:/Users/timeloop/Dropbox (MIT)/Fall 2019/6.374/6374_final_project/src/pe_message_passer.v}
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module processing_element
 -- Compiling module message_passer
