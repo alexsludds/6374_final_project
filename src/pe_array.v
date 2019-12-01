@@ -88,6 +88,10 @@ module pe_array
      generate
      for (x=0; x < EXTENDED_ARRAY_SIZE_1D; x=x+1)
      for (y=0; y < EXTENDED_ARRAY_SIZE_1D; y=y+1)
+     if() begin
+
+
+
      begin: gen_code_label
          message_passer #(.PRECISION(PRECISION),.OUTPUT_PRECISION(OUTPUT_PRECISION)) mp (
          .CLK(CLK),
@@ -95,7 +99,7 @@ module pe_array
          .ack(array_ack),
          .A(A_array_wire[x][y][PRECISION-1:0]),
          .B(B_array_wire[x][y][PRECISION-1:0]),
-         .s_out(s_out_array[x][y][OUTPUT_PRECISION-1:0]),
+         .s_out(s_out_wire[x][y][OUTPUT_PRECISION-1:0]),
          .isu(osr_array[x][y+1][PRECISION-1:0]),
          .osu(osu_array[x][y][PRECISION-1:0]),
          .isl(osr_array[x+1][y][PRECISION-1:0]),
@@ -108,7 +112,6 @@ module pe_array
          .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
          .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
          .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
-         .shift_direction(shift_direction),
          .command_to_execute(command_to_execute));
     end
     endgenerate

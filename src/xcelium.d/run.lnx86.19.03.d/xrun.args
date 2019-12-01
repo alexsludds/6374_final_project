@@ -1,0 +1,8 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-sv
+pe_array.v
+pe_array_tb.v
++access+r

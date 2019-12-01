@@ -1,0 +1,1888 @@
+xrun: 19.03-s013: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+TOOL:	xrun	19.03-s013: Started on Dec 01, 2019 at 15:48:48 EST
+xrun
+	-sv
+	pe_array.v
+	pe_array_tb.v
+	+access+r
+Recompiling... reason: file './pe_array.v' is newer than expected.
+	expected: Sun Dec  1 15:46:58 2019
+	actual:   Sun Dec  1 15:48:39 2019
+file: pe_array.v
+	module worklib.pe_array:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+        .OUTPUT_PRECISION(32)) u_DUT  
+                                   |
+xmelab: *W,CUVWSI (./pe_array_tb.v,33|35): 1 input port was not connected:
+xmelab: (./pe_array.v,22): shift_direction
+
+	Top level design units:
+		pe_array_tb
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+        .s_out_overwrite_array(s_out_overwrite_array),
+                                                   |
+xmelab: *E,TYCMPAT (./pe_array_tb.v,43|51): port or terminal connection type check failed (expecting datatype compatible with 'unpacked array [1:0] of unpacked array [1:0] of packed array [7:0] of logic' but found 'logic' instead).
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isl(osr_array[x+1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,101|22): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,108|32): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                |
+xmelab: *W,BNDWRN (./pe_array.v,109|32): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isu(osr_array[x][y+1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,99|26): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .a_overwrite(a_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,108|36): Bit-select or part-select index out of declared bounds.
+         .b_overwrite(b_overwrite[x][y][PRECISION-1:0]),
+                                    |
+xmelab: *W,BNDWRN (./pe_array.v,109|36): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                                  |
+xmelab: *W,BNDWRN (./pe_array.v,110|50): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+         .isd(osr_array[x][y-1][PRECISION-1:0]),
+                          |
+xmelab: *E,BNDERR (./pe_array.v,103|26): Bit-select or part-select index out of declared bounds.
+         .isr(osr_array[x-1][y][PRECISION-1:0]),
+                      |
+xmelab: *E,BNDERR (./pe_array.v,105|22): Bit-select or part-select index out of declared bounds.
+         .s_out_overwrite(s_out_overwrite_array[x][y][OUTPUT_PRECISION-1:0]),
+                                              |
+xmelab: *W,BNDWRN (./pe_array.v,110|46): Bit-select or part-select index out of declared bounds.
+xrun: *E,ELBERR: Error during elaboration (status 1), exiting.
+TOOL:	xrun	19.03-s013: Exiting on Dec 01, 2019 at 15:48:50 EST  (total: 00:00:02)

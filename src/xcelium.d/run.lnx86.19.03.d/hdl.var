@@ -1,0 +1,5 @@
+define XMSIMRC	( /mit/cadence/XCELIUM/1903/tools/xcelium/files/xmsimrc, ~/.xmsimrc )
+include ./hdlrun.var
+define SNAPSHOT worklib.pe_array_tb:v
+DEFINE RUNMODEDEFAULT 1
+DEFINE LIB_MAP ( + => worklib )

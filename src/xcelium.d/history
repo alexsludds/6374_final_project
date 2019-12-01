@@ -1,0 +1,12 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(01Dec2019:15:35:02):( xrun pe_array.v pe_array_tb.v +access+r )
+s2::(01Dec2019:15:41:57):( xrun pe_array.v pe_array_tb.v +access+r )
+s3::(01Dec2019:15:42:20):( xrun -sv pe_array.v pe_array_tb.v +access+r )
+s4::(01Dec2019:15:44:06):( xrun -sv pe_array.v pe_array_tb.v +access+r )
+s5::(01Dec2019:15:45:01):( xrun -sv pe_array.v pe_array_tb.v +access+r )
+s6::(01Dec2019:15:46:03):( xrun -sv pe_array.v pe_array_tb.v +access+r )
+s7::(01Dec2019:15:47:02):( xrun -sv pe_array.v pe_array_tb.v +access+r )
+s8::(01Dec2019:15:48:48):( xrun -sv pe_array.v pe_array_tb.v +access+r )
