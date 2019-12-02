@@ -1,12 +1,11 @@
 `timescale 1ns/10ps
-`include "pe_message_passer.v"
 
 
 module pe_array 
     # (
         parameter ARRAY_SIZE_1D = 1,
 	parameter EXTENSION_AMOUNT = 4,
-        parameter long_shift_amount = 4,
+        parameter command_width = 4,
         parameter PRECISION = 8,
         parameter OUTPUT_PRECISION = 32)
     (
@@ -71,7 +70,7 @@ module pe_array
 	//Here we make ready the and of all of the ready values in the ready array
 	assign ready = ready_array[1][1];
     input [1:0] shift_direction;
-    input [2:0] command_to_execute;
+    input [command_width-1:0] command_to_execute;
     input array_ack;
 
     wire [PRECISION-1:0] osu_array [EXTENDED_ARRAY_SIZE_1D-1+2:0][EXTENDED_ARRAY_SIZE_1D-1+2:0];

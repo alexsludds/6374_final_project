@@ -1,0 +1,175 @@
+
+/*
+    The overall tree adder is NOT multi-level. Instead, it re-uses the same memory by looping the outputs of summers
+    back into pixels inside the 1-level memory. This causes the summed values to get crunched progressively into
+    the top left corner of the pixel grid over several clock cycles.
+    
+    The advantage of this is that it greatly reduces die area.
+*/
+
+
+module TreeAdder
+    # (
+        parameter IMGSIDELENGTH = 64,
+        parameter ADDER_DATASIZE = 16,
+        parameter CMD_WIDTH = 4
+    )
+    (
+        clk, cmdinput, adder_top_shadowA_in, adder_top_shadowB_in, adder_top_mult_in, adder_pix_out
+    );
+    
+    /*
+    clk, cmdinput,
+    pixAA_top_in, pixAB_top_in, pixBA_top_in, pixBB_top_in,
+    pixAA_sum_in, pixAB_sum_in, pixBA_sum_in, pixBB_sum_in,
+    pixAA_out, pixAB_out, pixBA_out, pixBB_out,
+    sumout
+    */
+    
+    
+    //2D image array dimensions in pixels (NOTE: 2 pixels per TreeAdderElement!)
+    //Note: Must be 2^N
+    parameter imgX=IMGSIDELENGTH;
+    parameter imgY=IMGSIDELENGTH;
+    parameter elementsX = imgX/2;
+    parameter elementsY = imgY/2;
+    
+    parameter cmdWidth=CMD_WIDTH;
+    parameter pixBitwidth=ADDER_DATASIZE;
+    parameter sumoutWidth=ADDER_DATASIZE;
+    
+    input clk;
+    input [(cmdWidth-1):0] cmdinput;
+    input [(pixBitwidth-1):0] adder_top_shadowA_in [(imgX-1):0] [(imgY-1):0] ; //inputs for the 2D pixel array
+    input [(pixBitwidth-1):0] adder_top_shadowB_in [(imgX-1):0] [(imgY-1):0] ; //inputs for the 2D pixel array
+    input [(pixBitwidth-1):0] adder_top_mult_in [(imgX-1):0] [(imgY-1):0] ; //inputs for the 2D pixel array
+    output [(pixBitwidth-1):0] adder_pix_out [(imgX-1):0] [(imgY-1):0] ; //outputs for the 2D pixel array
+    
+    wire [(sumoutWidth-1):0] summerOutputWires [(elementsX-1):0] [(elementsY-1):0] ; //pre-existing wire makes it easier to do the iterative generation
+    //wire [(pixBitwidth-1):0] adder_pix_out_wires [imgX:0] [imgY:0] ; //outputs for the 2D pixel array
+	//assign adder_pix_out = adder_pix_out_wires;
+    
+    //this will instantiate the TreeAdderElement grid and map the inputs and outputs
+    //note that x,y have the origin at the top left of the image
+    // #(.ADDER_DATASIZE(pixBitwidth), .CMD_WIDTH(cmdWidth))
+    //#(pixBitwidth, cmdWidth)
+    
+    genvar x,y;
+    generate
+        for (x=0; x<elementsX; x=x+1) begin : xloop
+            for (y=0; y<elementsY; y=y+1) begin : yloop
+                if ((x < elementsX/2) && (y < elementsY/2)) begin
+                    TreeAdderElement #(.ADDER_DATASIZE(pixBitwidth), .CMD_WIDTH(cmdWidth)) elementA (
+                        .clk( clk ),
+                        .cmdinput( cmdinput ),
+                        
+                        // .pixAA_top_shadowA_in( adder_top_shadowA_in[x][y] ),
+                        // .pixAB_top_shadowA_in( adder_top_shadowA_in[x+1][y] ),
+                        // .pixBA_top_shadowA_in( adder_top_shadowA_in[x][y+1] ),
+                        // .pixBB_top_shadowA_in( adder_top_shadowA_in[x+1][y+1] ),
+                        
+                        // .pixAA_top_shadowB_in( adder_top_shadowB_in[x][y] ),
+                        // .pixAB_top_shadowB_in( adder_top_shadowB_in[x+1][y] ),
+                        // .pixBA_top_shadowB_in( adder_top_shadowB_in[x][y+1] ),
+                        // .pixBB_top_shadowB_in( adder_top_shadowB_in[x+1][y+1] ),
+                        
+                        .pixAA_top_mult_in( adder_top_mult_in[2*x][2*y] ),
+                        .pixAB_top_mult_in( adder_top_mult_in[2*x+1][2*y] ),
+                        .pixBA_top_mult_in( adder_top_mult_in[2*x][2*y+1] ),
+                        .pixBB_top_mult_in( adder_top_mult_in[2*x+1][2*y+1] ),
+                        
+                        .pixAA_top_shadowA_in( adder_top_shadowA_in[2*x][2*y] ),
+                        .pixAB_top_shadowA_in( adder_top_shadowA_in[2*x+1][2*y] ),
+                        .pixBA_top_shadowA_in( adder_top_shadowA_in[2*x][2*y+1] ),
+                        .pixBB_top_shadowA_in( adder_top_shadowA_in[2*x+1][2*y+1] ),
+                        
+                        .pixAA_top_shadowB_in( adder_top_shadowB_in[2*x][2*y] ),
+                        .pixAB_top_shadowB_in( adder_top_shadowB_in[2*x+1][2*y] ),
+                        .pixBA_top_shadowB_in( adder_top_shadowB_in[2*x][2*y+1] ),
+                        .pixBB_top_shadowB_in( adder_top_shadowB_in[2*x+1][2*y+1] ),
+                        
+                        // .pixAA_top_in( adder_top_in[x][y] ),
+                        // .pixAB_top_in( adder_top_in[x+1][y] ),
+                        // .pixBA_top_in( adder_top_in[x][y+1] ),
+                        // .pixBB_top_in( adder_top_in[x+1][y+1] ),
+                        
+                        // the IF statement applies to this block
+                        .pixAA_sum_in( summerOutputWires[2*x][2*y] ),
+                        .pixAB_sum_in( summerOutputWires[2*x+1][2*y] ),
+                        .pixBA_sum_in( summerOutputWires[2*x][2*y+1] ),
+                        .pixBB_sum_in( summerOutputWires[2*x+1][2*y+1] ),
+                        
+                        // .pixAA_out( adder_pix_out[x][y] ),
+                        // .pixAB_out( adder_pix_out[x+1][y] ),
+                        // .pixBA_out( adder_pix_out[x][y+1] ),
+                        // .pixBB_out( adder_pix_out[x+1][y+1] ),
+                        
+                        .pixAA_out( adder_pix_out[2*x][2*y] ),
+                        .pixAB_out( adder_pix_out[2*x+1][2*y] ),
+                        .pixBA_out( adder_pix_out[2*x][2*y+1] ),
+                        .pixBB_out( adder_pix_out[2*x+1][2*y+1] ),
+                        
+                        .sumout( summerOutputWires[x][y] )
+                    );
+                end
+                
+                else begin
+                    TreeAdderElement #(.ADDER_DATASIZE(pixBitwidth), .CMD_WIDTH(cmdWidth)) elementA (
+                        .clk(clk),
+                        .cmdinput(cmdinput),
+                        
+                        // .pixAA_top_shadowA_in( adder_top_shadowA_in[x][y] ),
+                        // .pixAB_top_shadowA_in( adder_top_shadowA_in[x+1][y] ),
+                        // .pixBA_top_shadowA_in( adder_top_shadowA_in[x][y+1] ),
+                        // .pixBB_top_shadowA_in( adder_top_shadowA_in[x+1][y+1] ),
+                        
+                        // .pixAA_top_shadowB_in( adder_top_shadowB_in[x][y] ),
+                        // .pixAB_top_shadowB_in( adder_top_shadowB_in[x+1][y] ),
+                        // .pixBA_top_shadowB_in( adder_top_shadowB_in[x][y+1] ),
+                        // .pixBB_top_shadowB_in( adder_top_shadowB_in[x+1][y+1] ),
+                        
+                        .pixAA_top_mult_in( adder_top_mult_in[2*x][2*y] ),
+                        .pixAB_top_mult_in( adder_top_mult_in[2*x+1][2*y] ),
+                        .pixBA_top_mult_in( adder_top_mult_in[2*x][2*y+1] ),
+                        .pixBB_top_mult_in( adder_top_mult_in[2*x+1][2*y+1] ),
+                        
+                        .pixAA_top_shadowA_in( adder_top_shadowA_in[2*x][2*y] ),
+                        .pixAB_top_shadowA_in( adder_top_shadowA_in[2*x+1][2*y] ),
+                        .pixBA_top_shadowA_in( adder_top_shadowA_in[2*x][2*y+1] ),
+                        .pixBB_top_shadowA_in( adder_top_shadowA_in[2*x+1][2*y+1] ),
+                        
+                        .pixAA_top_shadowB_in( adder_top_shadowB_in[2*x][2*y] ),
+                        .pixAB_top_shadowB_in( adder_top_shadowB_in[2*x+1][2*y] ),
+                        .pixBA_top_shadowB_in( adder_top_shadowB_in[2*x][2*y+1] ),
+                        .pixBB_top_shadowB_in( adder_top_shadowB_in[2*x+1][2*y+1] ),
+                        
+                        // .pixAA_top_in(adder_top_in[x][y]),
+                        // .pixAB_top_in(adder_top_in[x+1][y]),
+                        // .pixBA_top_in(adder_top_in[x][y+1]),
+                        // .pixBB_top_in(adder_top_in[x+1][y+1]),
+                        
+                        // the IF statement applies to this block
+                        // =================================== CRITICAL! - the size of the "zeros" here must be correct for the input, otherwise it will FAIL!!!
+                        .pixAA_sum_in( 32'h0000 ),
+                        .pixAB_sum_in( 32'h0000 ),
+                        .pixBA_sum_in( 32'h0000 ),
+                        .pixBB_sum_in( 32'h0000 ),
+                        
+                        // .pixAA_out( adder_pix_out[x][y] ),
+                        // .pixAB_out( adder_pix_out[x+1][y] ),
+                        // .pixBA_out( adder_pix_out[x][y+1] ),
+                        // .pixBB_out( adder_pix_out[x+1][y+1] ),
+                        
+                        .pixAA_out( adder_pix_out[2*x][2*y] ),
+                        .pixAB_out( adder_pix_out[2*x+1][2*y] ),
+                        .pixBA_out( adder_pix_out[2*x][2*y+1] ),
+                        .pixBB_out( adder_pix_out[2*x+1][2*y+1] ),
+                        
+                        .sumout( summerOutputWires[x][y] )
+                    );
+                end
+            end
+        end
+    endgenerate
+    
+endmodule

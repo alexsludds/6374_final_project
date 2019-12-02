@@ -1,9 +1,9 @@
 `timescale 1ns/10ps
-`include "pe.v"
 
 module message_passer 
     # (parameter PRECISION = 8,
-       parameter OUTPUT_PRECISION = 32)
+       parameter OUTPUT_PRECISION = 32,
+	parameter command_width = 4)
     (
         CLK,
         ready,
@@ -42,7 +42,7 @@ module message_passer
 	input CLK;
     output reg ready = 0;
     input ack;
-    input [2:0] command_to_execute;
+    input [command_width-1:0] command_to_execute;
 
     output reg [PRECISION-1:0] A = 0;
     output reg [PRECISION-1:0] B = 0;
@@ -71,6 +71,7 @@ module message_passer
     wire [OUTPUT_PRECISION-1:0] returned_from_pe;
     wire pe_ready;
     reg pe_ack;
+	reg pe_reset;
     //Here we instantiate an instance of a pe
     processing_element #(.PRECISION(PRECISION), .OUTPUT_PRECISION(OUTPUT_PRECISION)) pe_inst (.CLK(CLK),.reset(reset),.s_out(returned_from_pe),.a_in(A),.b_in(B),.start_multiply(start_multiply),.pe_ready(pe_ready),.pe_ack(pe_ack));
 
@@ -80,8 +81,9 @@ module message_passer
         end
         else begin
             //On each clock cycle we check command_to_execute and use that in a case statement        
-            if (command_to_execute == 3'b000) begin //000 - multiply
+            if (command_to_execute == 0) begin //multiply
                 pe_ack = 1;
+		wait (pe_ready == 0);
                 pe_ack = 0;
                 start_multiply = 1'b1;
                 wait (pe_ready == 1);
@@ -89,43 +91,48 @@ module message_passer
                 start_multiply <= 1'b0;
                 ready = 1;
             end
-            else if (command_to_execute == 3'b001) begin  //001 - shift_up
+            else if (command_to_execute == 1) begin  //shift_up
 		    A = isu;
 		    ready = 1;
             end
-            else if (command_to_execute == 3'b010) begin //010 - shift_down
+            else if (command_to_execute == 2) begin //shift_down
 
                     A = isd;
                     ready = 1;
 
             end
-            else if (command_to_execute == 3'b011) begin //011 - shift_left
+            else if (command_to_execute == 3) begin //shift_left
 
 
                     A = isl;
                     ready = 1;
 
             end
-            else if (command_to_execute == 3'b100) begin //100 - shift_right
+            else if (command_to_execute == 4) begin //shift_right
 
 
                     A = isr;
                     ready = 1;
 
             end
-            else if (command_to_execute == 3'b101) begin //101 - Overwrite A and B values
+            else if (command_to_execute == 5) begin //Overwrite A values
                 A = a_overwrite;
+                ready = 1;
+            end
+	    else if (command_to_execute == 6) begin //Overwrite B values
                 B = b_overwrite;
                 ready = 1;
             end
-            else if (command_to_execute == 3'b110) begin //110 - Overwrite S_out values
+            else if (command_to_execute == 7) begin //Overwrite S_out values
                 s_out = s_out_overwrite;
                 ready = 1;
             end
-            else if (command_to_execute == 3'b111) begin //111 - reset
+            else if (command_to_execute == 8) begin //reset
+		pe_reset = 1;
                 A = {PRECISION{1'b0}};
                 B = {PRECISION{1'b0}};
                 s_out = {OUTPUT_PRECISION{1'b0}};
+		pe_reset = 0;
                 ready = 1'b1;
             end
         end 

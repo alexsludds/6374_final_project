@@ -2,5 +2,7 @@
 // File created by:  xrun
 // Do not modify this file
 //
-/afs/athena.mit.edu/user/a/s/asludds/6374/6374_final_project/src/pe_tb.v
-/afs/athena.mit.edu/user/a/s/asludds/6374/6374_final_project/src/pe.v
+/afs/athena.mit.edu/user/a/s/asludds/6374/6374_final_project/src/system_tb.v
+/afs/athena.mit.edu/user/a/s/asludds/6374/6374_final_project/src/TreeAdder.sv
+/afs/athena.mit.edu/user/a/s/asludds/6374/6374_final_project/src/ShadowReg.sv
+/afs/athena.mit.edu/user/a/s/asludds/6374/6374_final_project/src/pe_array.v

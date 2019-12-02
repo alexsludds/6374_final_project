@@ -7,19 +7,22 @@ module pe_array_tb ();
 	
 	parameter ARRAY_SIZE_1D = 2;
 	parameter EXTENSION_AMOUNT = 2;
+	parameter command_width = 4;
+	parameter PRECISION = 8;
+	parameter OUTPUT_PRECISION = 32;
 
 	reg sys_clk;
 	reg start;
 	reg [9:0] test_err;
 	reg [9:0] test_count;	
 	reg ready;
-	wire [7:0] A_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
-	wire [7:0] B_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
-	wire [31:0] s_out_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
-	reg [7:0] a_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0] = '{default:0};
-	reg [7:0] b_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0] = '{default:0};
-	reg [31:0] s_out_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0] = '{default:0};
-	reg [2:0] command_to_execute = 0;
+	wire [PRECISION-1:0] A_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+	wire [PRECISION-1:0] B_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+	wire [OUTPUT_PRECISION-1:0] s_out_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
+	reg [PRECISION-1:0] a_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0] = '{default:0};
+	reg [PRECISION-1:0] b_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0] = '{default:0};
+	reg [OUTPUT_PRECISION-1:0] s_out_overwrite [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0] = '{default:0};
+	reg [command_width-1:0] command_to_execute = 0;
 	reg ack;
 
 	event terminate_sim;
@@ -28,8 +31,8 @@ module pe_array_tb ();
 	pe_array # (
         .ARRAY_SIZE_1D(ARRAY_SIZE_1D),
 		.EXTENSION_AMOUNT(EXTENSION_AMOUNT),
-        .long_shift_amount(4),
-        .PRECISION(8),
+        .command_width(command_width),
+        .PRECISION(PRECISION),
         .OUTPUT_PRECISION(32)) u_DUT  
     (
         .CLK(sys_clk),
@@ -69,7 +72,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 			
-			command_to_execute <= 3'b101;
+			command_to_execute <= 5;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -89,7 +92,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b001;
+			command_to_execute <= 1;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -98,7 +101,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b011;
+			command_to_execute <= 3;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -107,7 +110,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b010;
+			command_to_execute <= 2;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -116,7 +119,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b100;
+			command_to_execute <= 4;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -134,7 +137,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b000;
+			command_to_execute <= 0;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -150,7 +153,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 			
-			command_to_execute <= 3'b000;
+			command_to_execute <= 0;
 			ack <= 0;
 			wait (ready == 1)
 
@@ -167,7 +170,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b110;
+			command_to_execute <= 6;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -184,7 +187,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b001;
+			command_to_execute <= 1;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -192,7 +195,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b001;
+			command_to_execute <= 1;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -200,7 +203,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b001;
+			command_to_execute <= 1;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -208,7 +211,7 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b001;
+			command_to_execute <= 1;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -217,28 +220,28 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b010;
+			command_to_execute <= 2;
 			
 			ack <= 0;
 			wait (ready == 1)
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b010;
+			command_to_execute <= 2;
 			
 			ack <= 0;
 			wait (ready == 1)
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b010;
+			command_to_execute <= 2;
 			
 			ack <= 0;
 			wait (ready == 1)
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b010;
+			command_to_execute <= 2;
 			
 			ack <= 0;
 			wait (ready == 1)
@@ -257,11 +260,11 @@ module pe_array_tb ();
 			ack = 1;
 			wait(ready == 0)
 
-			command_to_execute <= 3'b111;
+			command_to_execute <= 7;
 			
 			ack <= 0;
 			wait (ready == 1)
-			if (A_array[0][0] != 0 || A_array[0][1] != 0 || A_array[1][0] != 0 || A_array[1][1] != 0 || B_array[0][0] != 0 || B_array[0][1] != 0 || B_array[1][0] != 0 || B_array[1][1] != 0 ) begin
+			if (A_array[0][0] != 0 || A_array[0][1] != 0 || A_array[1][0] != 0 || A_array[1][1] != 0 || B_array[0][0] != 0 || B_array[0][1] != 0 || B_array[1][0] != 0 || B_array[1][1] != 0 || s_out_array[0][0] != 0 || s_out_array[0][1] != 0 || s_out_array[1][0] != 0 || s_out_array[1][1] != 0) begin
 				$display("ERROR (%d)", test_count);
 				test_err <= test_err + 1;
 			end

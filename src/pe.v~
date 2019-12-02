@@ -2,7 +2,8 @@
 
 module processing_element 
     # (parameter PRECISION = 8,
-       parameter OUTPUT_PRECISION = 32)
+       parameter OUTPUT_PRECISION = 32,
+	parameter command_width =4)
     (
         CLK,
 	reset,
@@ -28,7 +29,6 @@ module processing_element
 		    pe_ready <= 0;
 		end
 		else begin
-			$display(start_multiply);
 			if (reset == 1) begin
 				s_in = 0;
 				s_out = 0;

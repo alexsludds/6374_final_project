@@ -3,6 +3,8 @@
 // Do not modify this file
 //
 -sv
-pe_tb.v
-pe.v
+system_tb.v
+TreeAdder.sv
+ShadowReg.sv
+pe_array.v
 +access+r

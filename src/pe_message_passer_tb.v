@@ -4,6 +4,7 @@ module processing_element_tb ();
 
 	parameter CLOCK_PERIOD = 100; // 10 MHz clock
 	parameter NUM_TEST = 10; // Number of tests
+	parameter command_width = 4;
 
 	reg sys_clk;
 	wire ready;
@@ -23,7 +24,7 @@ module processing_element_tb ();
 	reg [7:0] a_overwrite = 0;
 	reg [7:0] b_overwrite = 0;
 	reg [31:0] s_out_overwrite = 0;
-	reg [2:0] command_to_execute = 0;
+	reg [command_width-1:0] command_to_execute = 0;
 	wire [7:0] A;
 	wire [7:0] B;
 	reg ack;
@@ -32,7 +33,7 @@ module processing_element_tb ();
 
 	// Modify the module name for the design being tested
 
-	message_passer #(.PRECISION(8),.OUTPUT_PRECISION(32)) u_DUT  (
+	message_passer #(.PRECISION(8),.OUTPUT_PRECISION(32),.command_width(command_width)) u_DUT  (
         .CLK(sys_clk),
 		.ready(ready),
 		.ack(ack),
@@ -123,22 +124,36 @@ module processing_element_tb ();
 			test_count <= test_count + 1;
 		end
 		else if (test_count == 4) begin
-			//Test overwrite A and B
+			//Test overwrite A
 			ack = 1;
 			wait (ready == 0)
 			$display("Performing Test (%d)", test_count);
 			a_overwrite <= 8'b00111101;
-			b_overwrite <= 8'b01110001;
-			command_to_execute <= 3'b101;
+			command_to_execute <= 5;
 			ack <= 0;
 			wait (ready == 1)
-			if (A != 8'b00111101 || B!= 8'b01110001) begin
+			if (A != 8'b00111101) begin
 				$display("ERROR (%d)", test_count);
 				test_err <= test_err + 1;
 			end
 			test_count <= test_count + 1;
 		end
 		else if (test_count == 5) begin
+			//Test overwrite B
+			ack = 1;
+			wait (ready == 0)
+			$display("Performing Test (%d)", test_count);
+			b_overwrite <= 8'b01110001;
+			command_to_execute <= 6;
+			ack <= 0;
+			wait (ready == 1)
+			if (B!= 8'b01110001) begin
+				$display("ERROR (%d)", test_count);
+				test_err <= test_err + 1;
+			end
+			test_count <= test_count + 1;
+		end
+		else if (test_count == 6) begin
 			//Test multiplier. We already have preloaded in some values from the overwrite command
 			ack = 1;
 			wait (ready == 0)
@@ -154,7 +169,7 @@ module processing_element_tb ();
 			end
 			test_count <= test_count + 1;
 		end
-		else if (test_count == 6) begin
+		else if (test_count == 7) begin
 			//Test multiplier. Here we are specifically testing the accumulate, so we multiply by the same values again
 			ack = 1;
 			wait (ready == 0)
@@ -170,13 +185,13 @@ module processing_element_tb ();
 			end
 			test_count <= test_count + 1;
 		end
-		else if (test_count == 7) begin
+		else if (test_count == 8) begin
 			//Test Overwrite S_out
 			ack = 1;
 			wait (ready == 0)
 			$display("Performing Test (%d)", test_count);
 			s_out_overwrite <= 32'b01011101111101100100100101000100;
-			command_to_execute <= 3'b110;
+			command_to_execute <= 7;
 			ack = 0;
 			wait (ready == 1)
 			if (s_out != 32'b01011101111101100100100101000100) begin
@@ -185,12 +200,12 @@ module processing_element_tb ();
 			end
 			test_count <= test_count + 1;
 		end
-		else if (test_count == 8) begin
+		else if (test_count == 9) begin
 			//Test Reset
 			ack = 1;
 			wait (ready == 0)
 			$display("Performing Test (%d)", test_count);
-			command_to_execute <= 3'b111;
+			command_to_execute <= 8;
 			ack = 0;
 			wait (ready == 1)
 			if (A != 8'b0 || B != 8'b0 || s_out != 8'b0) begin
