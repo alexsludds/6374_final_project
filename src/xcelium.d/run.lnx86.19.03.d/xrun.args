@@ -3,6 +3,6 @@
 // Do not modify this file
 //
 -sv
-pe_array.v
-pe_array_tb.v
+pe_tb.v
+pe.v
 +access+r

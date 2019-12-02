@@ -1,3 +1,4 @@
+`timescale 1ns/10ps
 // Multi-precision adder test-bench
 module processing_element_tb ();
 
@@ -23,7 +24,6 @@ module processing_element_tb ();
 	reg [7:0] b_overwrite = 0;
 	reg [31:0] s_out_overwrite = 0;
 	reg [2:0] command_to_execute = 0;
-	reg image_to_shift;
 	wire [7:0] A;
 	wire [7:0] B;
 	reg ack;
@@ -50,7 +50,6 @@ module processing_element_tb ();
         .a_overwrite(a_overwrite),
         .b_overwrite(b_overwrite),
         .s_out_overwrite(s_out_overwrite),
-		.image_to_shift(image_to_shift),
         .command_to_execute(command_to_execute)
 		);
 
@@ -63,11 +62,11 @@ module processing_element_tb ();
 			ack = 1;
 			$display("Performing Test (%d)", test_count);
 			isu <= 8'b01101001;
-			image_to_shift <= 1'b0;
+
 			command_to_execute <= 3'b001;
 			ack <= 0;
 			wait (ready == 1)
-			if (osu != 8'b0 || A != 8'b01101001) begin
+			if (osu != 8'b01101001 || A != 8'b01101001) begin
 				$display("Shift up of A meant to be 01101001 is A=(%d), osu=(%d)",A, osu);
 				$display("ERROR (%d)", test_count);
 				test_err <= test_err + 1;
@@ -80,11 +79,10 @@ module processing_element_tb ();
 			wait (ready == 0)
 			$display("Performing Test (%d)", test_count);
 			isd <= 8'b00000111;
-			image_to_shift <= 1'b0;
 			command_to_execute <= 3'b010;
 			ack <= 0;
 			wait (ready == 1)
-			if (osd != 8'b01101001 || A != 8'b00000111) begin
+			if (osd != 8'b00000111 || A != 8'b00000111) begin
 				$display("Shift up of A meant to be 00000111 is A=(%d), osd=(%d)",A, osd);
 				$display("ERROR (%d)", test_count);
 				test_err <= test_err + 1;
@@ -97,11 +95,10 @@ module processing_element_tb ();
 			wait (ready == 0)
 			$display("Performing Test (%d)", test_count);
 			isl <= 8'b10000110;
-			image_to_shift <= 1'b1;
 			command_to_execute <= 3'b011;
 			ack <= 0;
 			wait (ready == 1)
-			if (osl != 8'b0 || B != 8'b10000110) begin
+			if (osl != 8'b10000110 || A != 8'b10000110) begin
 				$display("Shift up of B meant to be 01101001 is B=(%d), osl=(%d)",B, osl);
 				$display("ERROR (%d)", test_count);
 				test_err <= test_err + 1;
@@ -114,11 +111,11 @@ module processing_element_tb ();
 			wait (ready == 0)
 			$display("Performing Test (%d)", test_count);
 			isr <= 8'b10100110;
-			image_to_shift <= 1'b1;
+
 			command_to_execute <= 3'b100;
 			ack <= 0;
 			wait (ready == 1)
-			if (osr != 8'b10000110 || B != 8'b10100110) begin
+			if (osr != 8'b10100110 || A != 8'b10100110) begin
 				$display("Shift up of B meant to be 01101001 is B=(%d), osr=(%d)",B, osr);
 				$display("ERROR (%d)", test_count);
 				test_err <= test_err + 1;
@@ -126,22 +123,6 @@ module processing_element_tb ();
 			test_count <= test_count + 1;
 		end
 		else if (test_count == 4) begin
-			//Test multiplier. We already have preloaded in some values
-			ack = 1;
-			wait (ready == 0)
-			$display("Performing Test (%d)", test_count);
-			command_to_execute <= 3'b000;
-			ack <= 0;
-			wait (ready == 1)
-			$display("Multiplier test result:(%d)",s_out);
-			if (s_out != 32'b010010001010) begin
-				$display("ERROR (%d)", test_count);
-				$display("Multiplier test result:(%d)",s_out);
-				test_err <= test_err + 1;
-			end
-			test_count <= test_count + 1;
-		end
-		else if (test_count == 5) begin
 			//Test overwrite A and B
 			ack = 1;
 			wait (ready == 0)
@@ -157,7 +138,39 @@ module processing_element_tb ();
 			end
 			test_count <= test_count + 1;
 		end
+		else if (test_count == 5) begin
+			//Test multiplier. We already have preloaded in some values from the overwrite command
+			ack = 1;
+			wait (ready == 0)
+			$display("Performing Test (%d)", test_count);
+			command_to_execute <= 3'b000;
+			ack <= 0;
+			wait (ready == 1)
+			$display("Multiplier test result:(%d)",s_out);
+			if (s_out != 32'b01101011101101) begin
+				$display("ERROR (%d)", test_count);
+				$display("Multiplier test result:(%d)",s_out);
+				test_err <= test_err + 1;
+			end
+			test_count <= test_count + 1;
+		end
 		else if (test_count == 6) begin
+			//Test multiplier. Here we are specifically testing the accumulate, so we multiply by the same values again
+			ack = 1;
+			wait (ready == 0)
+			$display("Performing Test (%d)", test_count);
+			command_to_execute <= 3'b000;
+			ack <= 0;
+			wait (ready == 1)
+			$display("Multiplier test result:(%d)",s_out);
+			if (s_out != 32'b011010111011010) begin
+				$display("ERROR (%d)", test_count);
+				$display("Multiplier test result:(%d)",s_out);
+				test_err <= test_err + 1;
+			end
+			test_count <= test_count + 1;
+		end
+		else if (test_count == 7) begin
 			//Test Overwrite S_out
 			ack = 1;
 			wait (ready == 0)
@@ -172,7 +185,7 @@ module processing_element_tb ();
 			end
 			test_count <= test_count + 1;
 		end
-		else if (test_count == 7) begin
+		else if (test_count == 8) begin
 			//Test Reset
 			ack = 1;
 			wait (ready == 0)

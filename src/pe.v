@@ -5,7 +5,7 @@ module processing_element
        parameter OUTPUT_PRECISION = 32)
     (
         CLK,
-        s_in,
+	reset,
         s_out,
         a_in,
         b_in,
@@ -15,22 +15,29 @@ module processing_element
         );
 
 	input CLK;
+	input reset;
     output reg pe_ready = 0;
 	input [PRECISION-1:0] a_in, b_in;
 	input start_multiply;
-    input [OUTPUT_PRECISION-1:0] s_in;
-	output reg [OUTPUT_PRECISION-1:0] s_out;
+    	reg [OUTPUT_PRECISION-1:0] s_in = 0;
+	output reg [OUTPUT_PRECISION-1:0] s_out = 0;
     input pe_ack;
 
 	always @(posedge CLK) begin
-        if (pe_ack) begin 
-            pe_ready <= 0;
+		if (pe_ack) begin 
+		    pe_ready <= 0;
+		end
+		else begin
+			if (reset == 1) begin
+				s_in = 0;
+				s_out = 0;
+				pe_ready = 1;
+			end
+			else if (start_multiply == 1) begin 
+				s_out = s_in + a_in * b_in;
+				s_in = s_out;
+				pe_ready = 1;
+			end
+		end
         end
-        else begin
-            if (start_multiply) begin 
-                s_out = s_in + a_in * b_in;
-                pe_ready = 1;
-            end
-        end
-	end
 endmodule
