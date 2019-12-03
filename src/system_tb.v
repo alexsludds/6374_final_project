@@ -19,22 +19,22 @@ CSV_equivalent_B
 module system_tb();
     
       parameter DEBUG = 1;
-	parameter CLKHALFPERIOD = 1ns;
-	parameter NDEC_MAX = 3;
-	parameter DECIMATION_SPAM = 16;
-	reg [31:0] coords [2:0][8:0];
-	int argmax_X;
-	int argmax_Y;
-	int argmax_Val;
+    parameter CLKHALFPERIOD = 1ns;
+    parameter NDEC_MAX = 3;
+    parameter DECIMATION_SPAM = 16;
+    reg [64-1:0] coords [2:0][8:0];
+    reg [64-1:0] argmax_X;
+    reg [64-1:0] argmax_Y;
+    reg [64-1:0] argmax_Val;
   
       // ==================================== PARAMS/VARIABLES ARE INVOLVED WITH DATA IMPORTING - BEGIN =========
       // ==== USER PARAMETERS - BEGIN
-      parameter INPUTFILENAME_A = "img2d_A_4.csv";
-      parameter INPUTFILENAME_B = "img2d_B_4.csv";
+      parameter INPUTFILENAME_A = "../../src/img2d_A_2.csv";
+      parameter INPUTFILENAME_B = "../../src/img2d_B_2.csv";
     parameter IMGSIDELENGTH = 64; //this should be the actual img side length in pixels
-    parameter CELL_DATASIZE = 32; //max data size in the CSV cell
-    parameter ADDER_DATASIZE = 32; //data bitwidth in the tree adder
-	parameter EXTENSION_AMOUNT = 12;
+    parameter CELL_DATASIZE = 64; //max data size in the CSV cell
+    parameter ADDER_DATASIZE = 64; //data bitwidth in the tree adder
+    parameter EXTENSION_AMOUNT = 4;
       // ==== USER PARAMETERS - END
       
       // Limits for preventing infinite loops
@@ -68,7 +68,7 @@ module system_tb();
       
       // ======= SYSTEM-WIDE - begin ========
       reg sys_clk;
-	reg [10:0] random_counter = 0;
+    reg [10:0] random_counter = 0;
       reg loadEN; //should probably replace this with a command code from the controller
       parameter CMD_WIDTH = 4; //width of a cmd word
       reg [(CMD_WIDTH-1):0] cmdword;
@@ -78,24 +78,25 @@ module system_tb();
       wire [(CELL_DATASIZE-1):0] multiplier_out [(IMGSIDELENGTH-1):0] [(IMGSIDELENGTH-1):0];
       
       // ======= COMMANDS - begin ===========
-	parameter CMD_MULTIPLIER = 0;
-	parameter CMD_SHIFT_UP = 1;
-	parameter CMD_SHIFT_DOWN = 2;
-	parameter CMD_SHIFT_LEFT = 3;
-	parameter CMD_SHIFT_RIGHT = 4;
-	parameter CMD_A_OVERWRITE = 5;
-	parameter CMD_B_OVERWRITE = 6;
-	parameter CMD_S_OUT_OVERWRITE = 7;
-	parameter CMD_RESET = 8;
+    parameter CMD_MULTIPLIER = 0;
+    parameter CMD_SHIFT_UP = 1;
+    parameter CMD_SHIFT_DOWN = 2;
+    parameter CMD_SHIFT_LEFT = 3;
+    parameter CMD_SHIFT_RIGHT = 4;
+    parameter CMD_A_OVERWRITE = 5;
+    parameter CMD_B_OVERWRITE = 6;
+    parameter CMD_S_OUT_OVERWRITE = 7;
+    parameter CMD_RESET = 8;
       parameter CMD_TOPLOAD_SHADOW_A=9; //this causes the registers to load pixel values from shadow register A
       parameter CMD_TOPLOAD_SHADOW_B=10; //this causes the registers to load pixel values from shadow register B
       parameter CMD_SUMDECIMATE = 11; //this causes the registers to load pixel values from the sum inputs
       parameter CMD_TOPLOAD_MULTIPLIER = 12;
+      parameter CMD_DONOTHING = 15;
       //wire [((CELL_DATASIZE * (IMGSIDELENGTH**2))-1):0] shadowreg_A_parallelOut_1D; //implements the above 2D array in 1D unrolled format
       //wire [((CELL_DATASIZE * (IMGSIDELENGTH**2))-1):0] shadowreg_B_parallelOut_1D; //implements the above 2D array in 1D unrolled format
       // ======= SYSTEM-WIDE - end ========
-	
-	// this function causes the TreeAdder to fully decimate its contents into 1 bin ([0][0])
+    
+    // this function causes the TreeAdder to fully decimate its contents into 1 bin ([0][0])
       
       // ==================================== MODULE INSTANTIATIONS - BEGIN ====================================
       
@@ -126,19 +127,18 @@ module system_tb();
         .adder_pix_out(treeadder_parallel_out)
       );
       // ======= TREEADDER - end ===============
-	//============= PE_ARRAY - begin  ==================
-	reg ready;
-	wire [32-1:0] A_array [IMGSIDELENGTH-1:0][IMGSIDELENGTH-1:0];
-	wire [32-1:0] B_array [IMGSIDELENGTH-1:0][IMGSIDELENGTH-1:0];
-	reg [CMD_WIDTH-1:0] command_to_execute = 0;
-	reg ack;
-	
+    //============= PE_ARRAY - begin  ==================
+    reg ready;
+    wire [CELL_DATASIZE-1:0] A_array [IMGSIDELENGTH-1:0][IMGSIDELENGTH-1:0];
+    wire [CELL_DATASIZE-1:0] B_array [IMGSIDELENGTH-1:0][IMGSIDELENGTH-1:0];
+    reg ack;
+    
       pe_array # (
         .ARRAY_SIZE_1D(IMGSIDELENGTH),
-		.EXTENSION_AMOUNT(EXTENSION_AMOUNT),
+        .EXTENSION_AMOUNT(EXTENSION_AMOUNT),
         .command_width(CMD_WIDTH),
-        .PRECISION(32),
-        .OUTPUT_PRECISION(32)) pe_DUT  
+        .PRECISION(CELL_DATASIZE),
+        .OUTPUT_PRECISION(CELL_DATASIZE)) pe_DUT  
     (
         .CLK(sys_clk),
         .ready(ready),
@@ -149,7 +149,7 @@ module system_tb();
         .a_overwrite(treeadder_parallel_out),
         .b_overwrite(treeadder_parallel_out),
         .s_out_overwrite(treeadder_parallel_out),
-        .command_to_execute(command_to_execute));
+        .command_to_execute(cmdword));
       //===========PE_ARRAY - end =============
       
       // ==================================== MODULE INSTANTIATIONS - END =======================================
@@ -251,586 +251,766 @@ module system_tb();
             $display("(3,3) %d", CSV_equivalent_B[3][3]);
         end
         // =========================================== CSV LOADING PROCESS - END ===========================
-	//generate the coordinates of the search
-	    //(0,0)
-	    coords[0][0] = 0; // x val
-	    coords[1][0] = 0; // y val]
-	    //(1,0)
-	    coords[0][1] = 1; // x val
-	    coords[1][1] = 0; // y val
-	    //(1,1)
-	    coords[0][2] = 1; // x val
-	    coords[1][2] = 1; // y val
-	    //(0,1)
-	    coords[0][3] = 0; // x val
-	    coords[1][3] = 1; // y val
-	    //(-1,1)
-	    coords[0][4] = -1; // x val
-	    coords[1][4] = 1; // y val
-	    //(-1,0)
-	    coords[0][5] = -1; // x val
-	    coords[1][5] = 0; // y val
-	    //(-1,-1)
-	    coords[0][6] = -1; // x val
-	    coords[1][6] = -1; // y val
-	    //(0,-1)
-	    coords[0][7] = 0; // x val
-	    coords[1][7] = -1; // y val
-	    //(1,-1)
-	    coords[0][8] = 1; // x val
-	    coords[1][8] = -1; // y val
-	    
+    //generate the coordinates of the search
+        //(0,0)
+        coords[0][0] = 0; // x val
+        coords[1][0] = 0; // y val]
+        //(1,0)
+        coords[0][1] = 1; // x val
+        coords[1][1] = 0; // y val
+        //(1,1)
+        coords[0][2] = 1; // x val
+        coords[1][2] = 1; // y val
+        //(0,1)
+        coords[0][3] = 0; // x val
+        coords[1][3] = 1; // y val
+        //(-1,1)
+        coords[0][4] = -1; // x val
+        coords[1][4] = 1; // y val
+        //(-1,0)
+        coords[0][5] = -1; // x val
+        coords[1][5] = 0; // y val
+        //(-1,-1)
+        coords[0][6] = -1; // x val
+        coords[1][6] = -1; // y val
+        //(0,-1)
+        coords[0][7] = 0; // x val
+        coords[1][7] = -1; // y val
+        //(1,-1)
+        coords[0][8] = 1; // x val
+        coords[1][8] = -1; // y val
+        
+        ack = 1;
+        //We want to reset at the start of the testbench to make sure all pe's are zero
+        while (ready != 0) begin
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+        end
+    
+        cmdword <= CMD_RESET;
+        ack <= 0;
+        while (ready != 1) begin
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+        end
+        cmdword = CMD_DONOTHING;
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        #CLKHALFPERIOD
+        sys_clk = 1;
+        #CLKHALFPERIOD
+        sys_clk = 0;
 
 
+        $display("Stopping point: (%d)",1);
+        //clk occurs on rising edge
+        //change control values right after clk=1
 
-		$display("Stopping point: (%d)",1);
-	    //clk occurs on rising edge
-	    //change control values right after clk=1
+        // ================ copy CSVs into shadow registers
+        sys_clk = 1;
+        loadEN = 1; //load csv into both shadowregs
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        
+        $display("Stopping point: (%d)",2);
+        
+        // 1.
+        //==============================UPLOAD TO PE_A
+        // ========== copy shadowA into treeadder
+        #CLKHALFPERIOD
+        sys_clk = 1;
+        loadEN = 0;
+        cmdword = CMD_TOPLOAD_SHADOW_A; //load contents of shadowA into treeadder
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        // =========== decimate treeadder by NDEC_MAX
+        #CLKHALFPERIOD //treeadder now has shadowA
+        sys_clk = 1;
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        
+        // ================================================================================= TREEADDER LOADED SUCCESSFULLY
+        // $display("TreeAdder contents (0,0) = %d", treeadder_parallel_out[0][0]);
+        // $display("TreeAdder contents (1,1) = %d", treeadder_parallel_out[1][1]);
+        // $display("TreeAdder contents (63,63) = %d", treeadder_parallel_out[63][63]);
+        // $display("TreeAdder contents (63,63) = %p", treeadder_parallel_out);
 
-	    // ================ copy CSVs into shadow registers
-	    sys_clk = 1;
-	    loadEN = 1; //load csv into both shadowregs
-	    #CLKHALFPERIOD
-	    sys_clk = 0;
-	    
-	    $display("Stopping point: (%d)",2);
-	    
-	    // 1.
-	    //==============================UPLOAD TO PE_A
-	    // ========== copy shadowA into treeadder
-	    #CLKHALFPERIOD
-	    sys_clk = 1;
-	    loadEN = 0;
-	    cmdword = CMD_TOPLOAD_SHADOW_A; //load contents of shadowA into treeadder
-	    #CLKHALFPERIOD
-	    sys_clk = 0;
-	    // =========== decimate treeadder by NDEC_MAX
-	    #CLKHALFPERIOD //treeadder now has shadowA
-	    sys_clk = 1;
-	    for (int cntr = 0; cntr<NDEC_MAX; cntr = cntr+1) begin
-		cmdword = CMD_SUMDECIMATE;
-		#CLKHALFPERIOD
-		sys_clk = 0;
-		#CLKHALFPERIOD
-		sys_clk = 1;
-	    end
-		$display("Stopping point: (%d)",3);
-	    // =========== copy image in TreeAdder into PE_A
-	    //cmdword = ~~~~~~~~~~~PE_A load command ~~~~~~~~~~~~;
-	    ack = 1;
-		//wait(ready == 0)
-		while (ready != 0) begin
-			#CLKHALFPERIOD
-			sys_clk = 0;
-			#CLKHALFPERIOD
-			sys_clk = 1;
-		end
-		cmdword = CMD_A_OVERWRITE;
 
-		ack <= 0;
-		//wait(ready == 1)
-		while (ready != 1) begin
-			#CLKHALFPERIOD
-			sys_clk = 0;
-			#CLKHALFPERIOD
-			sys_clk = 1;
-		end
+        // for (int cntr = 0; cntr<NDEC_MAX; cntr = cntr+1) begin
+        //     cmdword = CMD_SUMDECIMATE;
+        //     #CLKHALFPERIOD
+        //     sys_clk = 0;
+        //     #CLKHALFPERIOD
+        //     sys_clk = 1;
+        // end
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        cmdword = CMD_DONOTHING;
+        
+        // ================================================================================= TREEADDER DECIMATED SUCCESSFULLY        
+        $display("Stopping point: (%d)",3);
+        // =========== copy image in TreeAdder into PE_A
+        //cmdword = ~~~~~~~~~~~PE_A load command ~~~~~~~~~~~~;
+        ack = 1;
+        cmdword = CMD_A_OVERWRITE;
+        //wait(ready == 0)
+        while (ready != 0) begin
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+        end
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        //cmdword <= CMD_A_OVERWRITE;
 
-	    #CLKHALFPERIOD
-	    sys_clk = 0;
-	    #CLKHALFPERIOD
-	    sys_clk = 1;
-	    
-	    $display("Stopping point: (%d)",4);
-	    
-	    // 2.
-	    //==============================UPLOAD TO PE_B
-	    // ========== copy shadowB into treeadder
-	    #CLKHALFPERIOD
-	    sys_clk = 1;
-	    loadEN = 0;
-	    cmdword = CMD_TOPLOAD_SHADOW_B; //load contents of shadowA into treeadder
-	    #CLKHALFPERIOD
-	    sys_clk = 0;
-	    // =========== decimate treeadder by NDEC_MAX
-	    #CLKHALFPERIOD //treeadder now has shadowB
-	    sys_clk = 1;
-	    for (int cntr = 0; cntr<NDEC_MAX; cntr = cntr+1) begin
-		cmdword = CMD_SUMDECIMATE;
-		#CLKHALFPERIOD
-		sys_clk = 0;
-		#CLKHALFPERIOD
-		sys_clk = 1;
-	    end
-		$display("Stopping point: (%d)",5);
-	    // =========== copy image in TreeAdder into PE_B
-	    //cmdword = ~~~~~~~~~~~PE_B load command ~~~~~~~~~~~~;
-		ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_B_OVERWRITE;
-			
-			ack <= 0;
-			while (ready != 1) begin
-			#CLKHALFPERIOD
-			sys_clk = 0;
-			#CLKHALFPERIOD
-			sys_clk = 1;
-		end
-	    #CLKHALFPERIOD
-	    sys_clk = 0;
-	    #CLKHALFPERIOD
-	    sys_clk = 1;
-	    
-	    $display("Stopping point: (%d)",6);
-	    
-	    //get the correlation values for the different offset positions
-	    for (int square3Counter = 0; square3Counter<9; square3Counter = square3Counter+1) begin
-		case (square3Counter)
-		    0:begin
-			$display("Stopping point: (%d)",7);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
+        ack <= 0;
+        //wait(ready == 1)
+        while (ready != 1) begin
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+        end
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        #CLKHALFPERIOD
+        sys_clk = 1;
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        #CLKHALFPERIOD
+        sys_clk = 1;        
+        
+        #CLKHALFPERIOD
+        sys_clk = 1;
+        
+        $display("Stopping point: (%d)",4);
+        
+        // 2.
+        //==============================UPLOAD TO PE_B
+        // ========== copy shadowB into treeadder
+        #CLKHALFPERIOD
+        sys_clk = 1;
+        loadEN = 0;
+        cmdword = CMD_TOPLOAD_SHADOW_B; //load contents of shadowA into treeadder
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        // =========== decimate treeadder by NDEC_MAX
+        #CLKHALFPERIOD //treeadder now has shadowB
+        sys_clk = 1;
+        // for (int cntr = 0; cntr<NDEC_MAX; cntr = cntr+1) begin
+        //     cmdword = CMD_SUMDECIMATE;
+        //     #CLKHALFPERIOD
+        //     sys_clk = 0;
+        //     #CLKHALFPERIOD
+        //     sys_clk = 1;
+        // end
+        cmdword = CMD_DONOTHING;
+        $display("Stopping point: (%d)",5);
+        // =========== copy image in TreeAdder into PE_B
+        //cmdword = ~~~~~~~~~~~PE_B load command ~~~~~~~~~~~~;
+        ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_B_OVERWRITE;
+            
+            ack <= 0;
+            while (ready != 1) begin
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+        end
+        #CLKHALFPERIOD
+        sys_clk = 0;
+        #CLKHALFPERIOD
+        sys_clk = 1;
+        
+        $display("Stopping point: (%d)",6);
+        
+        //get the correlation values for the different offset positions
+        for (int square3Counter = 0; square3Counter<9; square3Counter = square3Counter+1) begin
+        case (square3Counter)
+            0:begin
+            $display("Stopping point: (%d)",7);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+        
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            cmdword = CMD_SUMDECIMATE;
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
 
-		        //cmdword = RIGHTSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_SHIFT_RIGHT;
-			
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		        #CLKHALFPERIOD
-		        sys_clk = 0;
-		        #CLKHALFPERIOD
-		        sys_clk = 1;
-		    end
-		    1:begin
-			$display("Stopping point: (%d)",8);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		        //cmdword = UPSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_SHIFT_UP;
-			
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		        #CLKHALFPERIOD
-		        sys_clk = 0;
-		        #CLKHALFPERIOD
-		        sys_clk = 1;
-		    end
-		    2:begin
-			$display("Stopping point: (%d)",9);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		        //cmdword = LEFTSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-				cmdword = CMD_SHIFT_LEFT;
-			
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end			
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
 
-		        #CLKHALFPERIOD
-		        sys_clk = 0;
-		        #CLKHALFPERIOD
-		        sys_clk = 1;
-		    end
-		    3:begin
-			$display("Stopping point: (%d)",10);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		        //cmdword = LEFTSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_SHIFT_LEFT;
-			
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		        #CLKHALFPERIOD
-		        sys_clk = 0;
-		        #CLKHALFPERIOD
-		        sys_clk = 1;
-		    end
-		    4:begin
-			$display("Stopping point: (%d)",11);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		        //cmdword = DOWNSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_SHIFT_DOWN;
-			
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		    end
-		    5:begin
-			$display("Stopping point: (%d)",12);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		        //cmdword = DOWNSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_SHIFT_DOWN;
-			
-			ack <= 0;
-				while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		    end
-		    6:begin
-			$display("Stopping point: (%d)",13);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		        //cmdword = RIGHTSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_SHIFT_RIGHT;
-			
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		        #CLKHALFPERIOD
-		        sys_clk = 0;
-		        #CLKHALFPERIOD
-		        sys_clk = 1;
-		    end
-		    7:begin
-			$display("Stopping point: (%d)",14);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		        //cmdword = RIGHTSHIFT;
-			ack = 1;
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-			cmdword = CMD_SHIFT_RIGHT;
-			
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
+                //cmdword = RIGHTSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword <= CMD_SHIFT_RIGHT;
+            
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+                cmdword = CMD_DONOTHING;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            1:begin
+            $display("Stopping point: (%d)",8);
 
-		        #CLKHALFPERIOD
-		        sys_clk = 0;
-		        #CLKHALFPERIOD
-		        sys_clk = 1;
-		    end
-		    8:begin
-			$display("Stopping point: (%d)",15);
-			ack = 1;
-			//Trying to delay the function without using wait...
-			while (ready != 0) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			cmdword = CMD_MULTIPLIER;
-			ack <= 0;
-			while (ready != 1) begin
-				#CLKHALFPERIOD
-				sys_clk = 0;
-				#CLKHALFPERIOD
-				sys_clk = 1;
-			end
-		
-			// - copy multiply output to Treeadder
-			cmdword = CMD_TOPLOAD_MULTIPLIER;
-		
-			// decimate to 1 bin (i.e. just spam the clock for a bit)
-			for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
-			    cmdword = CMD_SUMDECIMATE;
-			end
-			coords[2][square3Counter] = treeadder_parallel_out[0][0];
-		    end
-		    
-		endcase
-	    end
-	    $display("Stopping point: (%d)",16);
-	    //now get the argmax (the coordinates with the highest correlation val)
-	    argmax_Val = 0;
-		$display("contents of coords (%p)",coords[2]);
-	    for (int count = 0; count<9; count=count+1) begin
-		if (coords[2][count] > argmax_Val) begin
-		    argmax_Val = coords[2][count];
-		    argmax_X = coords[0][count];
-		    argmax_Y = coords[1][count];
-		end
-	    end
-	    // now we have the coordinates of the argmax!
-		$display("Argmax val: (%d)",argmax_Val);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+         
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            
+
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                 #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+
+                //cmdword = UPSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_SHIFT_UP;
+            
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+                cmdword = CMD_DONOTHING;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            2:begin
+            $display("Stopping point: (%d)",9);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+                //cmdword = LEFTSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+                cmdword = CMD_SHIFT_LEFT;
+            
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end         
+                cmdword = CMD_DONOTHING;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            3:begin
+            $display("Stopping point: (%d)",10);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+                //cmdword = LEFTSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_SHIFT_LEFT;
+            
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+                cmdword = CMD_DONOTHING;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            4:begin
+            $display("Stopping point: (%d)",11);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+                //cmdword = DOWNSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_SHIFT_DOWN;
+            
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_DONOTHING;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            end
+            5:begin
+            $display("Stopping point: (%d)",12);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+        
+
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+                //cmdword = DOWNSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_SHIFT_DOWN;
+            
+            ack <= 0;
+                while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_DONOTHING;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            end
+            6:begin
+            $display("Stopping point: (%d)",13);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+                //cmdword = RIGHTSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_SHIFT_RIGHT;
+            
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+                cmdword = CMD_DONOTHING;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            7:begin
+            $display("Stopping point: (%d)",14);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+        
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+                //cmdword = RIGHTSHIFT;
+            ack = 1;
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            cmdword = CMD_SHIFT_RIGHT;
+            
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+                cmdword = CMD_DONOTHING;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+            8:begin
+            $display("Stopping point: (%d)",15);
+            ack = 1;
+            //Trying to delay the function without using wait...
+            while (ready != 0) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            cmdword = CMD_MULTIPLIER;
+            ack <= 0;
+            while (ready != 1) begin
+                #CLKHALFPERIOD
+                sys_clk = 0;
+                #CLKHALFPERIOD
+                sys_clk = 1;
+            end
+        
+            // - copy multiply output to Treeadder
+            cmdword = CMD_TOPLOAD_MULTIPLIER;
+            #CLKHALFPERIOD  
+            sys_clk = 0;
+            #CLKHALFPERIOD
+            sys_clk = 1;
+            #CLKHALFPERIOD
+            sys_clk = 0;
+        
+            cmdword = CMD_SUMDECIMATE;
+            // decimate to 1 bin (i.e. just spam the clock for a bit)
+            for (int cntr = 0; cntr<DECIMATION_SPAM; cntr = cntr+1) begin
+                
+                #CLKHALFPERIOD
+                sys_clk = 1;
+                #CLKHALFPERIOD
+                sys_clk = 0;
+            end
+            cmdword = CMD_DONOTHING;
+            coords[2][square3Counter] = treeadder_parallel_out[0][0];
+            $display("Here multiply happens (%p)",treeadder_parallel_out[0][0]);
+            end
+            
+        endcase
+        end
+        $display("Stopping point: (%d)",16);
+        //now get the argmax (the coordinates with the highest correlation val)
+        argmax_Val = 0;
+        $display("contents of coords (%p)",coords[2]);
+        for (int count = 0; count<9; count=count+1) begin
+            if (coords[2][count] > argmax_Val) begin
+                argmax_Val = coords[2][count];
+                argmax_X = coords[0][count];
+                argmax_Y = coords[1][count];
+            end
+        end
+        // now we have the coordinates of the argmax!
+        $display("Argmax val: (%d)",argmax_Val);
+        $display("Argmax x,y is (%d),(%d):",argmax_X,argmax_Y);
 
         
         
@@ -923,24 +1103,25 @@ module system_tb();
         $display("TreeAdder contents (63,63) = %d", treeadder_parallel_out[63][63]);
         */
         // ============================================ ACTUAL CLOCKED "initial begin" - END ==================
-	
-	//=================================Running decimation simulatiobegin========================        
+    
+    //=================================Running decimation simulatiobegin========================        
 
-	// this array will store the offset coords in [1:0]
-	// and the corresponding correlation scores in [2]
-	//=================================Running decimation simulation end========================
+    // this array will store the offset coords in [1:0]
+    // and the corresponding correlation scores in [2]
+    //=================================Running decimation simulation end========================
 
 
     end
     
-	// VCD dump
-	initial begin
-		$dumpfile("system_tb.vcd");
-		$dumpvars(0, shadowreg_A);
-		$dumpvars(0, shadowreg_B);
-		$dumpvars(0, treeadder_01);
-		$dumpvars(0, pe_DUT);
-	end
+    // VCD dump
+    initial begin
+        $dumpfile("system_tb.vcd");
+        // $dumpvars(0, pe_DUT);
+        $dumpvars(0, shadowreg_A);
+        // $dumpvars(0, shadowreg_B);
+        // $dumpvars(0, treeadder_01);
+        
+    end
 
 
 endmodule

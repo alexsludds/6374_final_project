@@ -33,23 +33,42 @@ module pe_array
 	wire [PRECISION-1:0] a_overwrite_wire [EXTENDED_ARRAY_SIZE_1D-1:0][EXTENDED_ARRAY_SIZE_1D-1:0];
 	wire [PRECISION-1:0] b_overwrite_wire [EXTENDED_ARRAY_SIZE_1D-1:0][EXTENDED_ARRAY_SIZE_1D-1:0];
 	
-	generate 
-	genvar i0;
-	genvar j0;
-	for(i0 = 0; i0 < ARRAY_SIZE_1D; i0++)begin
-		for(j0 = 0; j0<ARRAY_SIZE_1D; j0++)begin
-			assign s_out_overwrite_wire[EXTENSION_AMOUNT+i0-1][EXTENSION_AMOUNT+j0-1] = s_out_overwrite[i0][j0];
-			assign a_overwrite_wire[EXTENSION_AMOUNT+i0-1][EXTENSION_AMOUNT+j0-1] = a_overwrite[i0][j0];
-			assign b_overwrite_wire[EXTENSION_AMOUNT+i0-1][EXTENSION_AMOUNT+j0-1] = b_overwrite[i0][j0];
+	// generate 
+	// genvar i0;
+	// genvar j0;
+	// for(i0 = 0; i0 < ARRAY_SIZE_1D; i0++)begin
+	// 	for(j0 = 0; j0<ARRAY_SIZE_1D; j0++)begin
+	// 		assign s_out_overwrite_wire[EXTENSION_AMOUNT+i0-1][EXTENSION_AMOUNT+j0-1] = s_out_overwrite[i0][j0];
+	// 		assign a_overwrite_wire[EXTENSION_AMOUNT+i0-1][EXTENSION_AMOUNT+j0-1] = a_overwrite[i0][j0];
+	// 		assign b_overwrite_wire[EXTENSION_AMOUNT+i0-1][EXTENSION_AMOUNT+j0-1] = b_overwrite[i0][j0];
+	// 	end
+	// end
+	// endgenerate	
+
+    generate 
+	genvar il;
+	genvar jl;
+	for(il = 0; il < EXTENDED_ARRAY_SIZE_1D; il++)begin
+		for(jl = 0; jl<EXTENDED_ARRAY_SIZE_1D; jl++)begin
+            if (~(il >= EXTENSION_AMOUNT && il < ARRAY_SIZE_1D + EXTENSION_AMOUNT && jl >= EXTENSION_AMOUNT && jl < ARRAY_SIZE_1D + EXTENSION_AMOUNT)) begin
+                assign s_out_overwrite_wire[il][jl] = 0;
+                assign a_overwrite_wire[il][jl] = 0;
+                assign b_overwrite_wire[il][jl] = 0;
+            end
+            else begin
+                assign s_out_overwrite_wire[il][jl] = s_out_overwrite[il-EXTENSION_AMOUNT][jl-EXTENSION_AMOUNT];
+                assign a_overwrite_wire[il][jl] = a_overwrite[il-EXTENSION_AMOUNT][jl-EXTENSION_AMOUNT];
+                assign b_overwrite_wire[il][jl] = b_overwrite[il-EXTENSION_AMOUNT][jl-EXTENSION_AMOUNT];
+            end
 		end
 	end
-	endgenerate	
+	endgenerate
 
 
 	output [PRECISION-1:0] A_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
-    	wire [PRECISION-1:0] A_array_wire [EXTENDED_ARRAY_SIZE_1D-1:0][EXTENDED_ARRAY_SIZE_1D-1:0];
+    wire [PRECISION-1:0] A_array_wire [EXTENDED_ARRAY_SIZE_1D-1:0][EXTENDED_ARRAY_SIZE_1D-1:0];
 	output [PRECISION-1:0] B_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
-    	wire [PRECISION-1:0] B_array_wire [EXTENDED_ARRAY_SIZE_1D-1:0][EXTENDED_ARRAY_SIZE_1D-1:0];
+    wire [PRECISION-1:0] B_array_wire [EXTENDED_ARRAY_SIZE_1D-1:0][EXTENDED_ARRAY_SIZE_1D-1:0];
 	output [OUTPUT_PRECISION-1:0] s_out_array [ARRAY_SIZE_1D-1:0][ARRAY_SIZE_1D-1:0];
 	wire [OUTPUT_PRECISION-1:0] s_out_wire [EXTENDED_ARRAY_SIZE_1D-1:0][EXTENDED_ARRAY_SIZE_1D-1:0];
 	
@@ -81,7 +100,7 @@ module pe_array
      genvar x;
      genvar y;
      generate
-     for (x=0; x < EXTENDED_ARRAY_SIZE_1D; x=x+1)
+     for (x=0; x < EXTENDED_ARRAY_SIZE_1D; x=x+1) begin
      for (y=0; y < EXTENDED_ARRAY_SIZE_1D; y=y+1)
 
      begin: gen_code_label
@@ -104,6 +123,7 @@ module pe_array
          .b_overwrite(b_overwrite_wire[x][y][PRECISION-1:0]),
          .s_out_overwrite(s_out_overwrite_wire[x][y][OUTPUT_PRECISION-1:0]),
          .command_to_execute(command_to_execute));
+        end
     end
     endgenerate
 

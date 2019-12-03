@@ -1,0 +1,473 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2018 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 19.10-p002_1, built Tue May 21 10:26:01 PDT 2019
+Options: -files synth.tcl 
+Date:    Mon Dec 02 19:57:12 2019
+Host:    M66-080-5 (x86_64 w/Linux 3.13.0-170-generic) (4cores*4cpus*1physical cpu*Intel(R) Core(TM) i5-4690S CPU @ 3.20GHz 6144KB) (7943892KB)
+PID:     21789
+OS:      Unsupported OS as /etc does not have release info
+
+Checking out license: Genus_Synthesis
+
+Loading tool scripts...
+
+Finished loading tool scripts (6 seconds elapsed).
+
+#@ Processing -files option
+@genus 1> source synth.tcl
+#@ Begin verbose source synth.tcl
+@file(synth.tcl) 11: source make_generated_vars.tcl
+Sourcing './make_generated_vars.tcl' (Mon Dec 02 19:57:18 EST 2019)...
+#@ Begin verbose source make_generated_vars.tcl
+@file(make_generated_vars.tcl) 1: set SEARCH_PATH      { ../../../src }
+@file(make_generated_vars.tcl) 2:  set VERILOG_SRCS     { ../../../src/ShadowReg.sv  }
+@file(make_generated_vars.tcl) 3:  set VERILOG_TOPLEVEL ShadowReg
+#@ End verbose source make_generated_vars.tcl
+@file(synth.tcl) 12: echo ${SEARCH_PATH}
+ ../../../src 
+@file(synth.tcl) 13: echo ${VERILOG_SRCS}
+ ../../../src/ShadowReg.sv  
+@file(synth.tcl) 14: echo ${VERILOG_TOPLEVEL}
+ShadowReg
+@file(synth.tcl) 18: source libs.tcl
+Sourcing './libs.tcl' (Mon Dec 02 19:57:18 EST 2019)...
+#@ Begin verbose source libs.tcl
+@file(libs.tcl) 8: source make_generated_vars.tcl
+Sourcing './make_generated_vars.tcl' (Mon Dec 02 19:57:18 EST 2019)...
+#@ Begin verbose source make_generated_vars.tcl
+@file(make_generated_vars.tcl) 1: set SEARCH_PATH      { ../../../src }
+@file(make_generated_vars.tcl) 2:  set VERILOG_SRCS     { ../../../src/ShadowReg.sv  }
+@file(make_generated_vars.tcl) 3:  set VERILOG_TOPLEVEL ShadowReg
+#@ End verbose source make_generated_vars.tcl
+@file(libs.tcl) 12: set_db library /mit/cadence/GPDK045/gsclib045_svt_v4.4/gsclib045/timing/slow_vdd1v2_basicCells.lib
+
+Threads Configured:3
+
+  Message Summary for Library slow_vdd1v2_basicCells.lib:
+  *******************************************************
+  Could not find an attribute in the library. [LBR-436]: 574
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  *******************************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.080000, 125.000000) in library 'slow_vdd1v2_basicCells.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP5' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP5' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP7' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP7' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP9' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP9' must have an output pin.
+  Setting attribute of root '/': 'library' = /mit/cadence/GPDK045/gsclib045_svt_v4.4/gsclib045/timing/slow_vdd1v2_basicCells.lib
+@file(libs.tcl) 16: set_db init_hdl_search_path ${SEARCH_PATH}
+  Setting attribute of root '/': 'init_hdl_search_path' =  ../../../src 
+#@ End verbose source libs.tcl
+@file(synth.tcl) 22: read_hdl -sv ${VERILOG_SRCS}
+@file(synth.tcl) 23: elaborate
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX12' is a sequential timing arc.
+        : The library cell will be treated as a timing-model. Make sure that the timing arcs and output function are defined correctly. Even if the cell intends to have dual-functionality, it cannot be unmapped or automatically inferred.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX16' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX2' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX20' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX3' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX4' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX6' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX8' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX12' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX16' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX2' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX20' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX3' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX4' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX6' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX8' is a sequential timing arc.
+  Library has 324 usable logic and 128 usable sequential lib-cells.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'ShadowReg' from file './../../../src/ShadowReg.sv'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'ShadowReg' with default parameters value.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'ShadowReg'.
+Checking for analog nets...
+Check completed for analog nets.
+Checking for source RTL...
+Check completed for source RTL.
+UM:   timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                      elaborate
+@file(synth.tcl) 27: check_design > synth_check_design.rpt
+  Checking the design.
+
+  Done Checking the design.
+@file(synth.tcl) 31: source synth.sdc
+Sourcing './synth.sdc' (Mon Dec 02 20:10:50 EST 2019)...
+#@ Begin verbose source synth.sdc
+@file(synth.sdc) 10: set_time_unit -picoseconds
+@file(synth.sdc) 11: set_load_unit -femtofarads
+@file(synth.sdc) 27: create_clock -name clk_input -period 5000 [ get_ports "clk" ]
+@file(synth.sdc) 28: set_input_delay 100 -clock clk_input [get_ports "parallelIn* loadEN"]
+@file(synth.sdc) 29: set_output_delay 100 -clock clk_input [get_ports "parallelOut*"] 
+@file(synth.sdc) 34: set_max_fanout 10 [current_design]
+@file(synth.sdc) 40: set_max_transition 100 [current_design]
+@file(synth.sdc) 47: set_max_capacitance 10000 [current_design]
+#@ End verbose source synth.sdc
+@file(synth.tcl) 39: set_db syn_generic_effort low
+  Setting attribute of root '/': 'syn_generic_effort' = low
+@file(synth.tcl) 40: set_db syn_map_effort low
+  Setting attribute of root '/': 'syn_map_effort' = low
+@file(synth.tcl) 41: set_db dp_ungroup_during_syn_map false
+  Setting attribute of root '/': 'dp_ungroup_during_syn_map' = false
+@file(synth.tcl) 43: syn_generic
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'ShadowReg' to generic gates using 'low' effort.
+PBS_Generic-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Generic-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:39(00:13:49) |  00:00:00(00:00:00) |   0.0(  0.0) |   20:11:04 (Dec02) |  737.5 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+TNS Restructuring config:  at stage: generic applied.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : 'low' effort synthesis done in non-distributed manner. Set synthesize -effort to 'medium' or 'high' to turn on distributed optimization.
+Starting mux reorder optimization (startdef: ShadowReg, recur: true)
+Completed mux reorder optimization
+Starting reconvergence optimization (startdef: ShadowReg, recur: true)
+Completed reconvergence optimization
+Starting logic restructure optimization (startdef: ShadowReg, recur: true)
+Completed logic restructure optimization
+Info    : Pre-processed datapath logic. [DPOPT-6]
+        : No pre-processing optimizations applied to datapath logic in 'ShadowReg'.
+Info    : Optimizing datapath logic. [DPOPT-1]
+        : Optimizing datapath logic in 'ShadowReg'.
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region'
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 5 for module 'CDN_DP_region'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(0), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info    : Done optimizing datapath logic. [DPOPT-2]
+        : Done optimizing datapath logic in 'ShadowReg'.
+Starting mux reorder optimization (startdef: ShadowReg, recur: true)
+Completed mux reorder optimization
+Starting speculation optimization
+Completed speculation optimization (accepts:0)
+Starting BDD restructuring (startdef: ShadowReg, recur: true)
+Completed BDD restructuring
+==================================
+Stage : to_generic 
+==================================
+  =================
+   Message Summary
+  =================
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|    Id    |  Sev   |Count |                                                                                                Message Text                                                                                                  |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| CDFG-250 |Info    |    4 |Processing multi-dimensional arrays.                                                                                                                                                                          |
+| CDFG-738 |Info    | 4095 |Common subexpression eliminated.                                                                                                                                                                              |
+| CDFG-739 |Info    | 4095 |Common subexpression kept.                                                                                                                                                                                    |
+| CDFG-818 |Warning |    1 |Using default parameter value for module elaboration.                                                                                                                                                         |
+| CWD-19   |Info    |    1 |An implementation was inferred.                                                                                                                                                                               |
+| DPOPT-1  |Info    |    1 |Optimizing datapath logic.                                                                                                                                                                                    |
+| DPOPT-2  |Info    |    1 |Done optimizing datapath logic.                                                                                                                                                                               |
+| DPOPT-3  |Info    |    1 |Implementing datapath configurations.                                                                                                                                                                         |
+| DPOPT-4  |Info    |    1 |Done implementing datapath configurations.                                                                                                                                                                    |
+| DPOPT-6  |Info    |    1 |Pre-processed datapath logic.                                                                                                                                                                                 |
+| ELAB-1   |Info    |    1 |Elaborating Design.                                                                                                                                                                                           |
+| ELAB-3   |Info    |    1 |Done Elaborating Design.                                                                                                                                                                                      |
+| LBR-155  |Info    |  264 |Mismatch in unateness between 'timing_sense' attribute and the function.                                                                                                                                      |
+|          |        |      |The 'timing_sense' attribute will be respected.                                                                                                                                                               |
+| LBR-161  |Info    |    1 |Setting the maximum print count of this message to 10 if information_level is less than 9.                                                                                                                    |
+| LBR-162  |Info    |  124 |Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed.                                                                                                                                       |
+|          |        |      |Setting the 'timing_sense' to non_unate.                                                                                                                                                                      |
+| LBR-41   |Info    |    1 |An output library pin lacks a function attribute.                                                                                                                                                             |
+|          |        |      |If the remainder of this library cell's semantic checks are successful, it will be considered as a timing-model (because one of its outputs does not have a valid function.                                   |
+| LBR-412  |Info    |    1 |Created nominal operating condition.                                                                                                                                                                          |
+|          |        |      |The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively)                               |
+|          |        |      | , or by the default PVT values (1.0,1.0,1.0).                                                                                                                                                                |
+| LBR-436  |Info    |  574 |Could not find an attribute in the library.                                                                                                                                                                   |
+|          |        |      |It is recommended to have max_fanout attribute on the standard cell output pins. If this information is not present in .lib, then this message is issued. If you encounter any lib cells having output pins   |
+|          |        |      | without max_fanout attribute, then you can specify their attribute using 'set_max_fanout' command.                                                                                                           |
+| LBR-518  |Info    |    1 |Missing a function attribute in the output pin definition.                                                                                                                                                    |
+| LBR-76   |Warning |   16 |Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable.                        |
+|          |        |      |The library cell will be treated as a timing-model. Make sure that the timing arcs and output function are defined correctly. Even if the cell intends to have dual-functionality, it cannot be unmapped or   |
+|          |        |      | automatically inferred.                                                                                                                                                                                      |
+| LBR-9    |Warning |   20 |Library cell has no output pins defined.                                                                                                                                                                      |
+|          |        |      |Add the missing output pin(s)                                                                                                                                                                                 |
+|          |        |      | , then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will    |
+|          |        |      | mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. |
+|          |        |      | If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus |
+|          |        |      | will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.                                                |
+| PHYS-752 |Info    |    1 |Partition Based Synthesis execution skipped.                                                                                                                                                                  |
+| SYNTH-1  |Info    |    1 |Synthesizing.                                                                                                                                                                                                 |
+| TUI-31   |Warning |    2 |Obsolete command.                                                                                                                                                                                             |
+|          |        |      |This command is no longer supported.                                                                                                                                                                          |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Mapper: Libraries have:
+	domain _default_: 324 combo usable cells and 128 sequential usable cells
+Warning : Not obtained requested number of super thread servers. [ST-136]
+        : The tool is running on a 4 cpu machine.
+        : The requested number of cpus are not available on machine.
+Info    : Attempting to launch a super-threading server. [ST-120]
+        : Attempting to Launch server 1 of 4.
+        : The tool is entering super-threading mode and is launching a CPU server process.  This is enabled by the root attribute 'super_thread_servers' or 'auto_super_thread'.
+Info    : Connection established with super-threading server. [ST-110]
+        : The server 'localhost_1_0' is process '22985' on this host.
+        : The tool is entering super-threading mode and has established a connection with a CPU server process.  This is enabled by the root attributes 'super_thread_servers' or 'auto_super_thread'.
+                  Library loading done successfully on server 'localhost_1_0'.
+Info    : Connection established with super-threading server. [ST-110]
+        : The server 'localhost_1_1' is forked process '23139' on this host.
+Info    : Connection established with super-threading server. [ST-110]
+        : The server 'localhost_1_2' is forked process '23141' on this host.
+Info    : Connection established with super-threading server. [ST-110]
+        : The server 'localhost_1_3' is forked process '23143' on this host.
+Multi-threaded constant propagation [1|0] ...
+Multi-threaded Virtual Mapping    (4 threads per ST process, 4 of 4 CPUs usable)
+        Distributing super-thread jobs: cb_oseq
+          Sending 'cb_oseq' to server 'localhost_1_3'...
+            Sent 'cb_oseq' to server 'localhost_1_3'.
+          Received 'cb_oseq' from server 'localhost_1_3'. (171698 ms elapsed)
+        Distributing super-thread jobs: hg_cut_0x cb_seq
+          Sending 'hg_cut_0x' to server 'localhost_1_3'...
+            Sent 'hg_cut_0x' to server 'localhost_1_3'.
+          Sending 'cb_seq' to server 'localhost_1_1'...
+            Sent 'cb_seq' to server 'localhost_1_1'.
+          Received 'cb_seq' from server 'localhost_1_1'. (4732 ms elapsed)
+          Received 'hg_cut_0x' from server 'localhost_1_3'. (43538 ms elapsed)
+==================================
+Stage : first_condense 
+==================================
+  =================
+   Message Summary
+  =================
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|   Id   |  Sev   |Count |                                                                                        Message Text                                                                                         |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| ST-110 |Info    |    4 |Connection established with super-threading server.                                                                                                                                          |
+|        |        |      |The tool is entering super-threading mode and has established a connection with a CPU server process.  This is enabled by the root attributes 'super_thread_servers' or 'auto_super_thread'. |
+| ST-120 |Info    |    1 |Attempting to launch a super-threading server.                                                                                                                                               |
+|        |        |      |The tool is entering super-threading mode and is launching a CPU server process.  This is enabled by the root attribute 'super_thread_servers' or 'auto_super_thread'.                       |
+| ST-128 |Info    |    2 |Super thread servers are launched successfully.                                                                                                                                              |
+| ST-136 |Warning |    1 |Not obtained requested number of super thread servers.                                                                                                                                       |
+|        |        |      |The requested number of cpus are not available on machine.                                                                                                                                   |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+Global mapping target info
+==========================
+Cost Group 'clk_input' target slack:   147 ps
+Target path end-point (Port: ShadowReg/parallelOut[63][63][0])
+
+
++-----------+-------------------+-----+----------------------+---------------------------+
+|   Host    |      Machine      | CPU | Physical Memory (MB) | Peak Physical Memory (MB) |
++-----------+-------------------+-----+----------------------+---------------------------+
+| localhost | M66-080-5.mit.edu |  4  |        2334.2        |          4386.7           |
++-----------+-------------------+-----+----------------------+---------------------------+
+
++---------------+----------------------+---------------------------+
+|    Server     | Physical Memory (MB) | Peak Physical Memory (MB) |
++---------------+----------------------+---------------------------+
+| localhost_1_0 |      630.8 [1]       |        1414.2 [1]         |
+| localhost_1_2 |       64.7 [2]       |          [2] [3]          |
+| localhost_1_1 |      106.0 [2]       |          [2] [3]          |
+| localhost_1_3 |      369.9 [2]       |          [2] [3]          |
++---------------+----------------------+---------------------------+
+[1] Memory of child processes is included.
+[2] Memory is included in parent localhost_1_0.
+[3] Peak physical memory is not available for forked background servers.
+
+
++-----------+-------------------+-----+----------------------+---------------------------+
+|   Host    |      Machine      | CPU | Physical Memory (MB) | Peak Physical Memory (MB) |
++-----------+-------------------+-----+----------------------+---------------------------+
+| localhost | M66-080-5.mit.edu |  1  |        1187.5        |          4386.7           |
++-----------+-------------------+-----+----------------------+---------------------------+
+
++---------------+----------------------+---------------------------+
+|    Server     | Physical Memory (MB) | Peak Physical Memory (MB) |
++---------------+----------------------+---------------------------+
+| localhost_1_0 |        630.8         |          1414.2           |
++---------------+----------------------+---------------------------+
+
+PBS_Generic_Opt-Post - Elapsed_Time 599, CPU_Time 604.848117
+stamp 'PBS_Generic_Opt-Post' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:39(00:13:49) |  00:00:00(00:00:00) |   0.0(  0.0) |   20:11:04 (Dec02) |  737.5 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:10:43(00:23:48) |  00:10:04(00:09:59) | 100.0(100.0) |   20:21:03 (Dec02) |   1.19 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+PBS_Generic-Postgen HBO Optimizations - Elapsed_Time 5, CPU_Time 6.0
+stamp 'PBS_Generic-Postgen HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:39(00:13:49) |  00:00:00(00:00:00) |   0.0(  0.0) |   20:11:04 (Dec02) |  737.5 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:10:43(00:23:48) |  00:10:04(00:09:59) |  99.0( 99.2) |   20:21:03 (Dec02) |   1.19 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:10:49(00:23:53) |  00:00:06(00:00:05) |   1.0(  0.8) |   20:21:08 (Dec02) |   1.12 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+##>=================== Cadence Confidential (Generic-Logical) ===================
+##>=================== Cadence Confidential (Generic-Logical) ===================
+##>Main Thread Summary:
+##>----------------------------------------------------------------------------------------
+##>STEP                           Elapsed       WNS       TNS     Insts      Area    Memory
+##>----------------------------------------------------------------------------------------
+##>G:Initial                            7         -         -    131072    962143       737
+##>G:Setup                              0         -         -         -         -         -
+##>G:Launch ST                          0         -         -         -         -         -
+##>G:Design Partition                   0         -         -         -         -         -
+##>G:Create Partition Netlists          0         -         -         -         -         -
+##>G:Init Power                         0         -         -         -         -         -
+##>G:Budgeting                          0         -         -         -         -         -
+##>G:Derenv-DB                          0         -         -         -         -         -
+##>G:Debug Outputs                      0         -         -         -         -         -
+##>G:ST loading                         0         -         -         -         -         -
+##>G:Distributed                        0         -         -         -         -         -
+##>G:Timer                              0         -         -         -         -         -
+##>G:Assembly                           0         -         -         -         -         -
+##>G:DFT                                0         -         -         -         -         -
+##>G:Const Prop                         5         -         -    262144   1137079      1118
+##>G:Misc                             598
+##>----------------------------------------------------------------------------------------
+##>Total Elapsed                      610
+##>========================================================================================
+
+======================= Sequential Deletion Report =============================
+================================================================================
+
+Info    : Done synthesizing. [SYNTH-2]
+        : Done synthesizing 'ShadowReg' to generic gates.
+      timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                      syn_gen
+@file(synth.tcl) 44: syn_map
+Info    : Mapping. [SYNTH-4]
+        : Mapping 'ShadowReg' using 'low' effort.
+Mapper: Libraries have:
+	domain _default_: 324 combo usable cells and 128 sequential usable cells
+TNS Restructuring config:  at stage: map applied.
+PBS_TechMap-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_TechMap-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:39(00:13:49) |  00:00:00(00:00:00) |   0.0(  0.0) |   20:11:04 (Dec02) |  737.5 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:10:43(00:23:48) |  00:10:04(00:09:59) |  96.6( 96.6) |   20:21:03 (Dec02) |   1.19 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:10:49(00:23:53) |  00:00:06(00:00:05) |   1.0(  0.8) |   20:21:08 (Dec02) |   1.12 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:11:04(00:24:09) |  00:00:15(00:00:16) |   2.4(  2.6) |   20:21:24 (Dec02) |   1.11 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+PBS_TechMap-Premap HBO Optimizations - Elapsed_Time 5, CPU_Time 5.0
+stamp 'PBS_TechMap-Premap HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:39(00:13:49) |  00:00:00(00:00:00) |   0.0(  0.0) |   20:11:04 (Dec02) |  737.5 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:10:43(00:23:48) |  00:10:04(00:09:59) |  95.9( 95.8) |   20:21:03 (Dec02) |   1.19 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:10:49(00:23:53) |  00:00:06(00:00:05) |   1.0(  0.8) |   20:21:08 (Dec02) |   1.12 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:11:04(00:24:09) |  00:00:15(00:00:16) |   2.4(  2.6) |   20:21:24 (Dec02) |   1.11 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:11:09(00:24:14) |  00:00:05(00:00:05) |   0.8(  0.8) |   20:21:29 (Dec02) |   1.13 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : 'low' effort synthesis done in non-distributed manner. Set synthesize -effort to 'medium' or 'high' to turn on distributed optimization.
+Mapper: Libraries have:
+	domain _default_: 324 combo usable cells and 128 sequential usable cells
+Updating ST server settings
+Info    : Connection established with super-threading server. [ST-110]
+        : The server 'localhost_1_4' is forked process '23451' on this host.
+Info    : Connection established with super-threading server. [ST-110]
+        : The server 'localhost_1_5' is forked process '23453' on this host.
+Info    : Connection established with super-threading server. [ST-110]
+        : The server 'localhost_1_6' is forked process '23455' on this host.
+Multi-threaded Virtual Mapping    (4 threads per ST process, 4 of 4 CPUs usable)
+        Distributing super-thread jobs: cb_oseq cb_oseq_12290 cb_oseq_12288
+          Sending 'cb_oseq' to server 'localhost_1_5'...
+            Sent 'cb_oseq' to server 'localhost_1_5'.
+          Sending 'cb_oseq_12290' to server 'localhost_1_4'...
+            Sent 'cb_oseq_12290' to server 'localhost_1_4'.
+          Sending 'cb_oseq_12288' to server 'localhost_1_6'...
+            Sent 'cb_oseq_12288' to server 'localhost_1_6'.
+          Received 'cb_oseq_12288' from server 'localhost_1_6'. (28722 ms elapsed)
+          Received 'cb_oseq_12290' from server 'localhost_1_4'. (285822 ms elapsed)
+          Received 'cb_oseq' from server 'localhost_1_5'. (996386 ms elapsed)
+        Distributing super-thread jobs: cb_seq_12285 cb_oseq_12286
+          Sending 'cb_seq_12285' to server 'localhost_1_5'...
+            Sent 'cb_seq_12285' to server 'localhost_1_5'.
+          Sending 'cb_oseq_12286' to server 'localhost_1_4'...
+            Sent 'cb_oseq_12286' to server 'localhost_1_4'.

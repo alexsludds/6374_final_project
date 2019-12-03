@@ -1,0 +1,191 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2018 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 19.10-p002_1, built Tue May 21 10:26:01 PDT 2019
+Options: -files synth.tcl 
+Date:    Mon Dec 02 18:18:22 2019
+Host:    M66-080-5 (x86_64 w/Linux 3.13.0-170-generic) (4cores*4cpus*1physical cpu*Intel(R) Core(TM) i5-4690S CPU @ 3.20GHz 6144KB) (7943892KB)
+PID:     16221
+OS:      Unsupported OS as /etc does not have release info
+
+Checking out license: Genus_Synthesis
+
+Loading tool scripts...
+
+Finished loading tool scripts (6 seconds elapsed).
+
+#@ Processing -files option
+@genus 1> source synth.tcl
+#@ Begin verbose source synth.tcl
+@file(synth.tcl) 11: source make_generated_vars.tcl
+Sourcing './make_generated_vars.tcl' (Mon Dec 02 18:18:28 EST 2019)...
+#@ Begin verbose source make_generated_vars.tcl
+@file(make_generated_vars.tcl) 1: set SEARCH_PATH      { ../../../src }
+@file(make_generated_vars.tcl) 2:  set VERILOG_SRCS     { ../../../src/ShadowReg.sv  }
+@file(make_generated_vars.tcl) 3:  set VERILOG_TOPLEVEL ShadowReg
+#@ End verbose source make_generated_vars.tcl
+@file(synth.tcl) 12: echo ${SEARCH_PATH}
+ ../../../src 
+@file(synth.tcl) 13: echo ${VERILOG_SRCS}
+ ../../../src/ShadowReg.sv  
+@file(synth.tcl) 14: echo ${VERILOG_TOPLEVEL}
+ShadowReg
+@file(synth.tcl) 18: source libs.tcl
+Sourcing './libs.tcl' (Mon Dec 02 18:18:28 EST 2019)...
+#@ Begin verbose source libs.tcl
+@file(libs.tcl) 8: source make_generated_vars.tcl
+Sourcing './make_generated_vars.tcl' (Mon Dec 02 18:18:28 EST 2019)...
+#@ Begin verbose source make_generated_vars.tcl
+@file(make_generated_vars.tcl) 1: set SEARCH_PATH      { ../../../src }
+@file(make_generated_vars.tcl) 2:  set VERILOG_SRCS     { ../../../src/ShadowReg.sv  }
+@file(make_generated_vars.tcl) 3:  set VERILOG_TOPLEVEL ShadowReg
+#@ End verbose source make_generated_vars.tcl
+@file(libs.tcl) 12: set_db library /mit/cadence/GPDK045/gsclib045_svt_v4.4/gsclib045/timing/slow_vdd1v2_basicCells.lib
+
+Threads Configured:3
+
+  Message Summary for Library slow_vdd1v2_basicCells.lib:
+  *******************************************************
+  Could not find an attribute in the library. [LBR-436]: 574
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  *******************************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.080000, 125.000000) in library 'slow_vdd1v2_basicCells.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP5' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP5' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP7' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP7' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP9' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP9' must have an output pin.
+  Setting attribute of root '/': 'library' = /mit/cadence/GPDK045/gsclib045_svt_v4.4/gsclib045/timing/slow_vdd1v2_basicCells.lib
+@file(libs.tcl) 16: set_db init_hdl_search_path ${SEARCH_PATH}
+  Setting attribute of root '/': 'init_hdl_search_path' =  ../../../src 
+#@ End verbose source libs.tcl
+@file(synth.tcl) 22: read_hdl -sv ${VERILOG_SRCS}
+@file(synth.tcl) 23: elaborate
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX12' is a sequential timing arc.
+        : The library cell will be treated as a timing-model. Make sure that the timing arcs and output function are defined correctly. Even if the cell intends to have dual-functionality, it cannot be unmapped or automatically inferred.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX16' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX2' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX20' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX3' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX4' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX6' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_E_Ha0' between pins 'CK' and 'E' in libcell 'TLATNCAX8' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX12' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX16' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX2' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX20' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX3' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX4' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX6' is a sequential timing arc.
+Warning : Detected both combinational and sequential timing arcs in a library cell. This might prevent the tool from using this cell for technology mapping. The tool will treat it as unusable. [LBR-76]
+        : The arc 'CK_SE_Ha3' between pins 'CK' and 'SE' in libcell 'TLATNTSCAX8' is a sequential timing arc.
+  Library has 324 usable logic and 128 usable sequential lib-cells.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'ShadowReg' from file './../../../src/ShadowReg.sv'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'ShadowReg' with default parameters value.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'ShadowReg'.
+Checking for analog nets...
+Check completed for analog nets.
+Checking for source RTL...
+Check completed for source RTL.
+UM:   timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                      elaborate
+@file(synth.tcl) 27: check_design > synth_check_design.rpt
+  Checking the design.
+
+  Done Checking the design.
+@file(synth.tcl) 31: source synth.sdc
+Sourcing './synth.sdc' (Mon Dec 02 18:31:44 EST 2019)...
+#@ Begin verbose source synth.sdc
+@file(synth.sdc) 10: set_time_unit -picoseconds
+@file(synth.sdc) 11: set_load_unit -femtofarads
+@file(synth.sdc) 20: create_clock -name clk_input -period 5000 [ get_ports "CLK" ]
+Warning : Could not find requested search value. [SDC-208] [get_ports]
+        : The 'get_ports' command  cannot find any ports named 'CLK'
+        : Use the 'vcd' and 'vls' commands to browse the virtual directories to find the object because the specified name and/or location does not exist.
+Error   : A required object parameter could not be found. [TUI-61] [parse_options]
+        : An object of type 'port|pin|hpin' named '' could not be found.
+        : Check to make sure that the object exists and is of the correct type.  The 'what_is' command can be used to determine the type of an object.
+
+Usage: create_clock [-add] [-name <string>] [-comment <string>] [-domain <string>] -period <float> [-waveform <float>+] [-apply_inverted <port|pin|hpin>+] [<port|pin|hpin>+]
+
+    [-add]:
+        should the sources add or overwrite 
+    [-name <string>]:
+        name of the clock 
+    [-comment <string>]:
+        comment to be tagged with this command 
+    [-domain <string>]:
+        name of the clock domain for the clock 
+    -period <float>:
+        clock period 
+    [-waveform <float>+]:
+        waveform string 
+    [-apply_inverted <port|pin|hpin>+]:
+        sources of the clock that are inverted 
+    [<port|pin|hpin>+]:
+        sources that are not inverted 
+#@ End verbose source synth.sdc
+#@ End verbose source synth.tcl
+
+Encountered problems processing file: synth.tcl
+@genus:root: 2> exit
+Normal exit.

@@ -6,7 +6,7 @@
     
     The advantage of this is that it greatly reduces die area.
 */
-
+`timescale 1ns/10ps
 
 module TreeAdder
     # (
@@ -150,10 +150,10 @@ module TreeAdder
                         
                         // the IF statement applies to this block
                         // =================================== CRITICAL! - the size of the "zeros" here must be correct for the input, otherwise it will FAIL!!!
-                        .pixAA_sum_in( 32'h0000 ),
-                        .pixAB_sum_in( 32'h0000 ),
-                        .pixBA_sum_in( 32'h0000 ),
-                        .pixBB_sum_in( 32'h0000 ),
+                        .pixAA_sum_in( 64'h0000 ),
+                        .pixAB_sum_in( 64'h0000 ),
+                        .pixBA_sum_in( 64'h0000 ),
+                        .pixBB_sum_in( 64'h0000 ),
                         
                         // .pixAA_out( adder_pix_out[x][y] ),
                         // .pixAB_out( adder_pix_out[x+1][y] ),

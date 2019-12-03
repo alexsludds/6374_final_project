@@ -34,7 +34,8 @@ module processing_element
 				pe_ready = 1;
 			end
 			else if (start_multiply == 1) begin 
-				s_out = s_in + a_in * b_in;
+				// s_out = s_in + a_in * b_in;
+				s_out = a_in * b_in;
 				s_in = s_out;
 				pe_ready = 1;
 			end

@@ -1,0 +1,60 @@
+{C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/pe.v} {1 {vlog -work work -vopt -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/pe.v}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module processing_element
+
+Top level modules:
+	processing_element
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/TreeAdderElement.sv} {1 {vlog -work work -vopt -sv -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/TreeAdderElement.sv}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module TreeAdderElement
+
+Top level modules:
+	TreeAdderElement
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/system_tb.v} {1 {vlog -work work -vopt -sv -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/system_tb.v}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module system_tb
+
+Top level modules:
+	system_tb
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/pe_message_passer.v} {1 {vlog -work work -vopt -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/pe_message_passer.v}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module message_passer
+
+Top level modules:
+	message_passer
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/side_reg.v} {1 {vlog -work work -vopt -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/side_reg.v}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module side_reg
+
+Top level modules:
+	side_reg
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/TreeAdder.sv} {1 {vlog -work work -vopt -sv -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/TreeAdder.sv}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module TreeAdder
+
+Top level modules:
+	TreeAdder
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/array_packing.v} {1 {vlog -work work -vopt -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/array_packing.v}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/pe_array.v} {1 {vlog -work work -vopt -sv -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/pe_array.v}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module pe_array
+
+Top level modules:
+	pe_array
+
+} {} {}} {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/ShadowReg.sv} {1 {vlog -work work -vopt -sv -nocovercells {C:/Users/mitadm/Dropbox (MIT)/0DB-Colin-GradSchool/Classes/6.374/Project/CODE/AAAsluddscode/ShadowReg.sv}
+Model Technology ModelSim SE vlog 6.6 Compiler 2010.01 Jan  5 2010
+-- Compiling module ShadowReg
+
+Top level modules:
+	ShadowReg
+
+} {} {}}

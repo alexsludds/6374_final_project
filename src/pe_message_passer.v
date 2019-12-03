@@ -58,7 +58,7 @@ module message_passer
     output wire [PRECISION-1:0] osr;
     output wire [PRECISION-1:0] osu;
 
-    	assign osl = A;
+    assign osl = A;
    	assign osu = A;
 	assign osd = A;
 	assign osr = A;
@@ -83,37 +83,29 @@ module message_passer
             //On each clock cycle we check command_to_execute and use that in a case statement        
             if (command_to_execute == 0) begin //multiply
                 pe_ack = 1;
-		wait (pe_ready == 0);
+		        wait (pe_ready == 0);
                 pe_ack = 0;
                 start_multiply = 1'b1;
                 wait (pe_ready == 1);
-		s_out = returned_from_pe;
+		        s_out = returned_from_pe;
                 start_multiply <= 1'b0;
                 ready = 1;
             end
             else if (command_to_execute == 1) begin  //shift_up
-		    A = isu;
-		    ready = 1;
+                A = isu;
+                ready = 1;
             end
             else if (command_to_execute == 2) begin //shift_down
-
-                    A = isd;
-                    ready = 1;
-
+                A = isd;
+                ready = 1;
             end
             else if (command_to_execute == 3) begin //shift_left
-
-
                     A = isl;
                     ready = 1;
-
             end
             else if (command_to_execute == 4) begin //shift_right
-
-
                     A = isr;
                     ready = 1;
-
             end
             else if (command_to_execute == 5) begin //Overwrite A values
                 A = a_overwrite;
@@ -128,12 +120,12 @@ module message_passer
                 ready = 1;
             end
             else if (command_to_execute == 8) begin //reset
-		pe_reset = 1;
+		        pe_reset = 1;
                 A = {PRECISION{1'b0}};
                 B = {PRECISION{1'b0}};
                 s_out = {OUTPUT_PRECISION{1'b0}};
-		pe_reset = 0;
-                ready = 1'b1;
+		        pe_reset = 0;
+                ready = 1;
             end
         end 
     end 

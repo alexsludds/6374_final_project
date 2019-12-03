@@ -8,8 +8,11 @@
 -sv
 system_tb.v
 TreeAdder.sv
+TreeAdderElement.sv
 ShadowReg.sv
 pe_array.v
+pe_message_passer.v
+pe.v
 -CDSLIB
 ./xcelium.d/run.lnx86.19.03.d/cdsrun.lib
 -HDLVAR
